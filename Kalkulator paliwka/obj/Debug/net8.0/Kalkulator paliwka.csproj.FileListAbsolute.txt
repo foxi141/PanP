@@ -1,0 +1,31 @@
+C:\Users\kosic\Documents\GitHub\PanP\Kalkulator paliwka\bin\Debug\net8.0\appsettings.Development.json
+C:\Users\kosic\Documents\GitHub\PanP\Kalkulator paliwka\bin\Debug\net8.0\appsettings.json
+C:\Users\kosic\Documents\GitHub\PanP\Kalkulator paliwka\bin\Debug\net8.0\Kalkulator paliwka.staticwebassets.runtime.json
+C:\Users\kosic\Documents\GitHub\PanP\Kalkulator paliwka\bin\Debug\net8.0\Kalkulator paliwka.exe
+C:\Users\kosic\Documents\GitHub\PanP\Kalkulator paliwka\bin\Debug\net8.0\Kalkulator paliwka.deps.json
+C:\Users\kosic\Documents\GitHub\PanP\Kalkulator paliwka\bin\Debug\net8.0\Kalkulator paliwka.runtimeconfig.json
+C:\Users\kosic\Documents\GitHub\PanP\Kalkulator paliwka\bin\Debug\net8.0\Kalkulator paliwka.dll
+C:\Users\kosic\Documents\GitHub\PanP\Kalkulator paliwka\bin\Debug\net8.0\Kalkulator paliwka.pdb
+C:\Users\kosic\Documents\GitHub\PanP\Kalkulator paliwka\obj\Debug\net8.0\Kalkulator paliwka.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\kosic\Documents\GitHub\PanP\Kalkulator paliwka\obj\Debug\net8.0\Kalkulator paliwka.AssemblyInfoInputs.cache
+C:\Users\kosic\Documents\GitHub\PanP\Kalkulator paliwka\obj\Debug\net8.0\Kalkulator paliwka.AssemblyInfo.cs
+C:\Users\kosic\Documents\GitHub\PanP\Kalkulator paliwka\obj\Debug\net8.0\Kalkulator paliwka.csproj.CoreCompileInputs.cache
+C:\Users\kosic\Documents\GitHub\PanP\Kalkulator paliwka\obj\Debug\net8.0\Kalkulator paliwka.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\kosic\Documents\GitHub\PanP\Kalkulator paliwka\obj\Debug\net8.0\Kalkulator paliwka.RazorAssemblyInfo.cache
+C:\Users\kosic\Documents\GitHub\PanP\Kalkulator paliwka\obj\Debug\net8.0\Kalkulator paliwka.RazorAssemblyInfo.cs
+C:\Users\kosic\Documents\GitHub\PanP\Kalkulator paliwka\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\kosic\Documents\GitHub\PanP\Kalkulator paliwka\obj\Debug\net8.0\staticwebassets.development.json
+C:\Users\kosic\Documents\GitHub\PanP\Kalkulator paliwka\obj\Debug\net8.0\staticwebassets\msbuild.Kalkulator paliwka.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\kosic\Documents\GitHub\PanP\Kalkulator paliwka\obj\Debug\net8.0\staticwebassets\msbuild.build.Kalkulator paliwka.props
+C:\Users\kosic\Documents\GitHub\PanP\Kalkulator paliwka\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.Kalkulator paliwka.props
+C:\Users\kosic\Documents\GitHub\PanP\Kalkulator paliwka\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.Kalkulator paliwka.props
+C:\Users\kosic\Documents\GitHub\PanP\Kalkulator paliwka\obj\Debug\net8.0\staticwebassets.pack.json
+C:\Users\kosic\Documents\GitHub\PanP\Kalkulator paliwka\obj\Debug\net8.0\scopedcss\bundle\Kalkulator paliwka.styles.css
+C:\Users\kosic\Documents\GitHub\PanP\Kalkulator paliwka\obj\Debug\net8.0\scopedcss\projectbundle\Kalkulator paliwka.bundle.scp.css
+C:\Users\kosic\Documents\GitHub\PanP\Kalkulator paliwka\obj\Debug\net8.0\Kalkulator paliwka.dll
+C:\Users\kosic\Documents\GitHub\PanP\Kalkulator paliwka\obj\Debug\net8.0\refint\Kalkulator paliwka.dll
+C:\Users\kosic\Documents\GitHub\PanP\Kalkulator paliwka\obj\Debug\net8.0\Kalkulator paliwka.pdb
+C:\Users\kosic\Documents\GitHub\PanP\Kalkulator paliwka\obj\Debug\net8.0\Kalkulator paliwka.genruntimeconfig.cache
+C:\Users\kosic\Documents\GitHub\PanP\Kalkulator paliwka\obj\Debug\net8.0\ref\Kalkulator paliwka.dll
+C:\Users\kosic\Documents\GitHub\PanP\Kalkulator paliwka\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout .cshtml.rz.scp.css
+C:\Users\kosic\Documents\GitHub\PanP\Kalkulator paliwka\obj\Debug\net8.0\scopedcss\Views\Shared\_Layoutnotlogged.cshtml.rz.scp.css
