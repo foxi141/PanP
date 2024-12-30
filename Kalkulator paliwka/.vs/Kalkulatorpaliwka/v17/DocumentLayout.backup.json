@@ -7,36 +7,45 @@
       "RelativeMoniker": "D:0:0:{C3AC32F5-82D7-4158-91FF-E29ACFA17AD3}|Kalkulator paliwka.csproj|solutionrelative:controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C3AC32F5-82D7-4158-91FF-E29ACFA17AD3}|Kalkulator paliwka.csproj|c:\\users\\kosic\\documents\\github\\panp\\kalkulator paliwka\\controllers\\fuelcalculatorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3AC32F5-82D7-4158-91FF-E29ACFA17AD3}|Kalkulator paliwka.csproj|solutionrelative:controllers\\fuelcalculatorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C3AC32F5-82D7-4158-91FF-E29ACFA17AD3}|Kalkulator paliwka.csproj|c:\\users\\kosic\\documents\\github\\panp\\kalkulator paliwka\\models\\usermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C3AC32F5-82D7-4158-91FF-E29ACFA17AD3}|Kalkulator paliwka.csproj|solutionrelative:models\\usermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C3AC32F5-82D7-4158-91FF-E29ACFA17AD3}|Kalkulator paliwka.csproj|c:\\users\\kosic\\documents\\github\\panp\\kalkulator paliwka\\models\\fuelcalculatormodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3AC32F5-82D7-4158-91FF-E29ACFA17AD3}|Kalkulator paliwka.csproj|solutionrelative:models\\fuelcalculatormodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C3AC32F5-82D7-4158-91FF-E29ACFA17AD3}|Kalkulator paliwka.csproj|c:\\users\\kosic\\documents\\github\\panp\\kalkulator paliwka\\models\\vehiclemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3AC32F5-82D7-4158-91FF-E29ACFA17AD3}|Kalkulator paliwka.csproj|solutionrelative:models\\vehiclemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C3AC32F5-82D7-4158-91FF-E29ACFA17AD3}|Kalkulator paliwka.csproj|c:\\users\\kosic\\documents\\github\\panp\\kalkulator paliwka\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{C3AC32F5-82D7-4158-91FF-E29ACFA17AD3}|Kalkulator paliwka.csproj|solutionrelative:views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C3AC32F5-82D7-4158-91FF-E29ACFA17AD3}|Kalkulator paliwka.csproj|c:\\users\\kosic\\documents\\github\\panp\\kalkulator paliwka\\views\\fuelcalculator\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{C3AC32F5-82D7-4158-91FF-E29ACFA17AD3}|Kalkulator paliwka.csproj|solutionrelative:views\\fuelcalculator\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{C3AC32F5-82D7-4158-91FF-E29ACFA17AD3}|Kalkulator paliwka.csproj|c:\\users\\kosic\\documents\\github\\panp\\kalkulator paliwka\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C3AC32F5-82D7-4158-91FF-E29ACFA17AD3}|Kalkulator paliwka.csproj|solutionrelative:data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C3AC32F5-82D7-4158-91FF-E29ACFA17AD3}|Kalkulator paliwka.csproj|c:\\users\\kosic\\documents\\github\\panp\\kalkulator paliwka\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C3AC32F5-82D7-4158-91FF-E29ACFA17AD3}|Kalkulator paliwka.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C3AC32F5-82D7-4158-91FF-E29ACFA17AD3}|Kalkulator paliwka.csproj|c:\\users\\kosic\\documents\\github\\panp\\kalkulator paliwka\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{C3AC32F5-82D7-4158-91FF-E29ACFA17AD3}|Kalkulator paliwka.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C3AC32F5-82D7-4158-91FF-E29ACFA17AD3}|Kalkulator paliwka.csproj|c:\\users\\kosic\\documents\\github\\panp\\kalkulator paliwka\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{C3AC32F5-82D7-4158-91FF-E29ACFA17AD3}|Kalkulator paliwka.csproj|solutionrelative:appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\kosic\\AppData\\Local\\Temp\\resxqp3l..sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\kosic\\AppData\\Local\\Temp\\z3ujr2mt..sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C3AC32F5-82D7-4158-91FF-E29ACFA17AD3}|Kalkulator paliwka.csproj|c:\\users\\kosic\\documents\\github\\panp\\kalkulator paliwka\\views\\account\\login.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C3AC32F5-82D7-4158-91FF-E29ACFA17AD3}|Kalkulator paliwka.csproj|solutionrelative:views\\account\\login.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C3AC32F5-82D7-4158-91FF-E29ACFA17AD3}|Kalkulator paliwka.csproj|c:\\users\\kosic\\documents\\github\\panp\\kalkulator paliwka\\views\\shared\\_layoutnotlogged.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{C3AC32F5-82D7-4158-91FF-E29ACFA17AD3}|Kalkulator paliwka.csproj|solutionrelative:views\\shared\\_layoutnotlogged.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C3AC32F5-82D7-4158-91FF-E29ACFA17AD3}|Kalkulator paliwka.csproj|c:\\users\\kosic\\documents\\github\\panp\\kalkulator paliwka\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C3AC32F5-82D7-4158-91FF-E29ACFA17AD3}|Kalkulator paliwka.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\kosic\\AppData\\Local\\Temp\\vt4o15r0..sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,53 +55,34 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{26341fe2-71dd-46fd-bb1b-2e51a92a0d64}"
-            },
-            {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\kosic\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\kosic\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Title": "z3ujr2mt..sql",
+              "DocumentMoniker": "C:\\Users\\kosic\\AppData\\Local\\Temp\\z3ujr2mt..sql",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\AppData\\Local\\Temp\\z3ujr2mt..sql",
+              "ToolTip": "C:\\Users\\kosic\\AppData\\Local\\Temp\\z3ujr2mt..sql",
+              "RelativeToolTip": "..\\..\\..\\..\\AppData\\Local\\Temp\\z3ujr2mt..sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2024-12-30T02:20:47.266Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UserModel.cs",
+              "DocumentMoniker": "C:\\Users\\kosic\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\Models\\UserModel.cs",
+              "RelativeDocumentMoniker": "Models\\UserModel.cs",
+              "ToolTip": "C:\\Users\\kosic\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\Models\\UserModel.cs",
+              "RelativeToolTip": "Models\\UserModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-30T00:13:29.418Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Login.cshtml",
-              "DocumentMoniker": "C:\\Users\\kosic\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\Views\\Account\\Login.cshtml",
-              "RelativeDocumentMoniker": "Views\\Account\\Login.cshtml",
-              "ToolTip": "C:\\Users\\kosic\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\Views\\Account\\Login.cshtml",
-              "RelativeToolTip": "Views\\Account\\Login.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-30T00:10:44.326Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "_Layoutnotlogged.cshtml",
-              "DocumentMoniker": "C:\\Users\\kosic\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\Views\\Shared\\_Layoutnotlogged.cshtml",
-              "RelativeDocumentMoniker": "Views\\Shared\\_Layoutnotlogged.cshtml",
-              "ToolTip": "C:\\Users\\kosic\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\Views\\Shared\\_Layoutnotlogged.cshtml",
-              "RelativeToolTip": "Views\\Shared\\_Layoutnotlogged.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-30T00:10:15.943Z",
+              "WhenOpened": "2024-12-30T00:08:02.479Z",
               "EditorCaption": ""
             },
             {
@@ -101,81 +91,123 @@
               "Title": "AccountController.cs",
               "DocumentMoniker": "C:\\Users\\kosic\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\Controllers\\AccountController.cs",
               "RelativeDocumentMoniker": "Controllers\\AccountController.cs",
-              "ToolTip": "C:\\Users\\kosic\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\Controllers\\AccountController.cs",
-              "RelativeToolTip": "Controllers\\AccountController.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAAwB4AAAAMAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\kosic\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\Controllers\\AccountController.cs*",
+              "RelativeToolTip": "Controllers\\AccountController.cs*",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAACQAAABEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-30T00:08:48.122Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "VehicleModel.cs",
-              "DocumentMoniker": "C:\\Users\\kosic\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\Models\\VehicleModel.cs",
-              "RelativeDocumentMoniker": "Models\\VehicleModel.cs",
-              "ToolTip": "C:\\Users\\kosic\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\Models\\VehicleModel.cs",
-              "RelativeToolTip": "Models\\VehicleModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-30T00:08:21.579Z",
+              "DocumentIndex": 5,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\kosic\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\Users\\kosic\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-12-30T01:27:18.992Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UserModel.cs",
-              "DocumentMoniker": "C:\\Users\\kosic\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\Models\\UserModel.cs",
-              "RelativeDocumentMoniker": "Models\\UserModel.cs",
-              "ToolTip": "C:\\Users\\kosic\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\Models\\UserModel.cs",
-              "RelativeToolTip": "Models\\UserModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-30T00:08:02.479Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+              "DocumentIndex": 7,
+              "Title": "resxqp3l..sql",
+              "DocumentMoniker": "C:\\Users\\kosic\\AppData\\Local\\Temp\\resxqp3l..sql",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\AppData\\Local\\Temp\\resxqp3l..sql",
+              "ToolTip": "C:\\Users\\kosic\\AppData\\Local\\Temp\\resxqp3l..sql",
+              "RelativeToolTip": "..\\..\\..\\..\\AppData\\Local\\Temp\\resxqp3l..sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2024-12-30T02:25:05.295Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "C:\\Users\\kosic\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\Views\\FuelCalculator\\Index.cshtml",
-              "RelativeDocumentMoniker": "Views\\FuelCalculator\\Index.cshtml",
-              "ToolTip": "C:\\Users\\kosic\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\Views\\FuelCalculator\\Index.cshtml",
-              "RelativeToolTip": "Views\\FuelCalculator\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAA0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-12-30T00:03:30.573Z",
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "C:\\Users\\kosic\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "appsettings.Development.json",
+              "ToolTip": "C:\\Users\\kosic\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\appsettings.Development.json",
+              "RelativeToolTip": "appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-12-30T12:56:06.127Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "FuelCalculatorModel.cs",
-              "DocumentMoniker": "C:\\Users\\kosic\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\Models\\FuelCalculatorModel.cs",
-              "RelativeDocumentMoniker": "Models\\FuelCalculatorModel.cs",
-              "ToolTip": "C:\\Users\\kosic\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\Models\\FuelCalculatorModel.cs",
-              "RelativeToolTip": "Models\\FuelCalculatorModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\kosic\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "Data\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\kosic\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\Data\\AppDbContext.cs",
+              "RelativeToolTip": "Data\\AppDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-30T00:03:21.641Z",
+              "WhenOpened": "2024-12-30T01:21:26.002Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "FuelCalculatorController.cs",
-              "DocumentMoniker": "C:\\Users\\kosic\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\Controllers\\FuelCalculatorController.cs",
-              "RelativeDocumentMoniker": "Controllers\\FuelCalculatorController.cs",
-              "ToolTip": "C:\\Users\\kosic\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\Controllers\\FuelCalculatorController.cs",
-              "RelativeToolTip": "Controllers\\FuelCalculatorController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC4AAAABAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\kosic\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\kosic\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-30T00:03:05.53Z",
+              "WhenOpened": "2024-12-30T00:13:29.418Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "C:\\Users\\kosic\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\Views\\Account\\Login.cshtml",
+              "RelativeDocumentMoniker": "Views\\Account\\Login.cshtml",
+              "ToolTip": "C:\\Users\\kosic\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\Views\\Account\\Login.cshtml",
+              "RelativeToolTip": "Views\\Account\\Login.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-30T00:10:44.326Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "_Layoutnotlogged.cshtml",
+              "DocumentMoniker": "C:\\Users\\kosic\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\Views\\Shared\\_Layoutnotlogged.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_Layoutnotlogged.cshtml",
+              "ToolTip": "C:\\Users\\kosic\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\Views\\Shared\\_Layoutnotlogged.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_Layoutnotlogged.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-30T00:10:15.943Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Login.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\kosic\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\Views\\Account\\Login.cshtml.cs",
+              "RelativeDocumentMoniker": "Views\\Account\\Login.cshtml.cs",
+              "ToolTip": "C:\\Users\\kosic\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\Views\\Account\\Login.cshtml.cs",
+              "RelativeToolTip": "Views\\Account\\Login.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-30T02:01:53.039Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "vt4o15r0..sql",
+              "DocumentMoniker": "C:\\Users\\kosic\\AppData\\Local\\Temp\\vt4o15r0..sql",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\AppData\\Local\\Temp\\vt4o15r0..sql",
+              "ToolTip": "C:\\Users\\kosic\\AppData\\Local\\Temp\\vt4o15r0..sql",
+              "RelativeToolTip": "..\\..\\..\\..\\AppData\\Local\\Temp\\vt4o15r0..sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2024-12-30T01:23:52.837Z"
             }
           ]
         }

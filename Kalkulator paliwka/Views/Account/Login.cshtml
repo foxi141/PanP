@@ -1,13 +1,26 @@
 ﻿@{
-    ViewData["Title"] = "Logowanie";
+    ViewData["Title"] = "Login";
 }
 
-<h1>Zaloguj się</h1>
+<h2>Login</h2>
 
-<form method="post">
+<form asp-action="Login" method="post">
     <div>
-        <label for="username">Nazwa użytkownika:</label>
+        <label for="username">Username:</label>
         <input type="text" id="username" name="username" required />
     </div>
-    <button type="submit">Zaloguj</button>
+    <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required />
+    </div>
+    <div>
+        <button type="submit">Login</button>
+    </div>
 </form>
+
+@if (ViewBag.Error != null)
+{
+    <div style="color: red;">
+        @ViewBag.Error
+    </div>
+}

@@ -1,17 +1,16 @@
-﻿using Kalkulator_paliwka.Data;
+﻿using KalkulatorPaliwka.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-// Add session services
-builder.Services.AddDistributedMemoryCache(); // Wymagane dla sesji
-builder.Services.AddSession(); // Dodaj obsługę sesji
-
 builder.Services.AddControllersWithViews();
+
+// Configure PostgreSQL connection
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))); // Używamy Npgsql dla PostgreSQL
+
+builder.Services.AddSession();
 
 var app = builder.Build();
 
@@ -26,9 +25,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseSession();
 app.UseAuthorization();
-app.UseSession(); // Użycie sesji
 
 app.MapControllerRoute(
     name: "default",

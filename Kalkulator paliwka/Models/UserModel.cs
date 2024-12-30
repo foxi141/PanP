@@ -1,8 +1,11 @@
-﻿public class UserModel
+﻿namespace KalkulatorPaliwka.Models
 {
-    public int UserModelId { get; set; }  // Klucz główny
-    public string Username { get; set; }
-
-    // Kolekcja przypisanych pojazdów (jeśli chcesz mieć możliwość przypisania wielu pojazdów do jednego użytkownika)
-    public ICollection<VehicleModel> Vehicles { get; set; }
+    public class User
+    {
+        public int userid { get; set; }
+        public string username { get; set; }
+        public string passwordhash { get; set; } // Zmieniono nazwę pola
+        public string email { get; set; }
+        public DateTime createdat { get; set; }
+    }
 }

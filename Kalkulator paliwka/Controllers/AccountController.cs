@@ -1,9 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Kalkulator_paliwka.Models;
-using Kalkulator_paliwka.Data;
-using Microsoft.EntityFrameworkCore;
+﻿using KalkulatorPaliwka.Data;
+using KalkulatorPaliwka.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;  // Dodajemy przestrzeń nazw dla obsługi sesji
+using System.Linq;
 
-namespace Kalkulator_paliwka.Controllers
+namespace KalkulatorPaliwka.Controllers
 {
     public class AccountController : Controller
     {
@@ -14,40 +15,36 @@ namespace Kalkulator_paliwka.Controllers
             _context = context;
         }
 
+        [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(string username)
+        public IActionResult Login(string username, string password)
         {
             // Sprawdzenie, czy użytkownik istnieje w bazie danych
-            var user = await _context.Users.Include(u => u.AssignedVehicle)
-                                            .FirstOrDefaultAsync(u => u.Username == username);
+            var user = _context.Users.SingleOrDefault(u => u.username == username && u.passwordhash == password);
 
-            if (user == null)
+            if (user != null)
             {
-                // Możesz dodać logikę dla nowego użytkownika
-                user = new UserModel
-                {
-                    Username = username,
-                    AssignedVehicle = new VehicleModel
-                    {
-                        Make = "Toyota",
-                        Model = "Corolla",
-                        RegistrationNumber = "ABC123"
-                    }
-                };
-
-                _context.Users.Add(user);
-                await _context.SaveChangesAsync();
+                // Zapisujemy ID użytkownika w sesji
+                HttpContext.Session.SetString("UserId", user.userid.ToString());
+                return RedirectToAction("Index", "Home");  // Przekierowanie na stronę główną
             }
 
-            // Zapisz obiekt w sesji za pomocą metod rozszerzenia
-            HttpContext.Session.SetObject("CurrentUser", user);
+            // Jeśli dane są błędne, wyświetlamy komunikat o błędzie
+            ViewBag.Error = "Invalid username or password";
+            return View();
+        }
 
-            return RedirectToAction("Index", "FuelCalculator");
+        [HttpGet]
+        public IActionResult Logout()
+        {
+            // Usuwamy dane z sesji
+            HttpContext.Session.Clear();
+            return RedirectToAction("Login");  // Przekierowanie do strony logowania
         }
     }
 }
