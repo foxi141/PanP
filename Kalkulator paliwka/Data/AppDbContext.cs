@@ -14,3 +14,8 @@ namespace KalkulatorPaliwka.Data
         public DbSet<FuelData> FuelData { get; set; }
     }
 }
+
+
+
+
+

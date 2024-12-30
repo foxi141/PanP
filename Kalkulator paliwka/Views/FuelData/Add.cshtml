@@ -9,22 +9,38 @@
 <form method="post" asp-action="Add">
     <div>
         <label for="Kilometers">Kilometers</label>
-        <input type="number" id="Kilometers" name="Kilometers" value="@Model.Distance" />
+        <input type="number" id="Kilometers" name="Distance" value="@Model.Distance" />
+        @if (ViewData.ModelState["Distance"]?.Errors.Count > 0)
+        {
+            <span style="color:red;">@ViewData.ModelState["Distance"]?.Errors.FirstOrDefault()?.ErrorMessage</span>
+        }
     </div>
+
     <div>
         <label for="FuelConsumption">Fuel Consumption (L/100km)</label>
         <input type="number" id="FuelConsumption" name="FuelConsumption" value="@Model.FuelConsumption" />
+        @if (ViewData.ModelState["FuelConsumption"]?.Errors.Count > 0)
+        {
+            <span style="color:red;">@ViewData.ModelState["FuelConsumption"]?.Errors.FirstOrDefault()?.ErrorMessage</span>
+        }
     </div>
+
     <div>
         <label for="FuelPrice">Fuel Price</label>
         <input type="number" id="FuelPrice" name="FuelPrice" value="@Model.FuelPrice" />
+        @if (ViewData.ModelState["FuelPrice"]?.Errors.Count > 0)
+        {
+            <span style="color:red;">@ViewData.ModelState["FuelPrice"]?.Errors.FirstOrDefault()?.ErrorMessage</span>
+        }
     </div>
+
     <div>
         <label for="TotalCost">Total Cost</label>
         <input type="number" id="TotalCost" name="TotalCost" value="@Model.TotalCost" readonly />
     </div>
 
     <button type="submit">Add</button>
+
     @if (!ViewData.ModelState.IsValid)
     {
         <div style="color:red;">
@@ -34,5 +50,4 @@
             }
         </div>
     }
-
 </form>

@@ -47,7 +47,15 @@ namespace KalkulatorPaliwka.Controllers
             // Jeśli model jest poprawny
             if (ModelState.IsValid)
             {
-              
+                // Przypisanie użytkownika do danych
+                model.userid = HttpContext.Session.GetString("username");
+
+                // Sprawdzamy, czy mamy poprawny userid
+                if (string.IsNullOrEmpty(model.userid))
+                {
+                    ModelState.AddModelError("userid", "Nie znaleziono użytkownika w sesji.");
+                    return View(model);  // Jeśli nie ma usera w sesji, wyświetl błąd
+                }
 
                 // Sprawdzamy czy mamy odpowiednie dane
                 if (model.Distance <= 0 || model.FuelConsumption <= 0)
@@ -58,15 +66,6 @@ namespace KalkulatorPaliwka.Controllers
 
                 // Oblicz całkowity koszt
                 model.TotalCost = (model.Distance * model.FuelConsumption) / 100 * model.FuelPrice;
-
-                // Przypisanie użytkownika do danych
-                model.userid = HttpContext.Session.GetString("username");
-
-                // Sprawdzamy, czy mamy poprawny userid
-                if (string.IsNullOrEmpty(model.userid))
-                {
-                    return RedirectToAction("Login", "Account");  // Jeśli nie ma usera w sesji, przekieruj do logowania
-                }
 
                 // Dodanie danych do bazy
                 _context.FuelData.Add(model);

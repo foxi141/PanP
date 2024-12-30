@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Kalkulator_paliwka.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class migracjadwa : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -18,11 +18,11 @@ namespace Kalkulator_paliwka.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    userid = table.Column<string>(type: "text", nullable: false),
-                    Distance = table.Column<double>(type: "double precision", nullable: false),
+                    Distance = table.Column<int>(type: "integer", nullable: false),
                     FuelConsumption = table.Column<double>(type: "double precision", nullable: false),
                     FuelPrice = table.Column<double>(type: "double precision", nullable: false),
-                    TotalCost = table.Column<double>(type: "double precision", nullable: false)
+                    TotalCost = table.Column<double>(type: "double precision", nullable: false),
+                    userid = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -33,8 +33,7 @@ namespace Kalkulator_paliwka.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    userid = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    userid = table.Column<string>(type: "text", nullable: false),
                     username = table.Column<string>(type: "text", nullable: false),
                     passwordhash = table.Column<string>(type: "text", nullable: false),
                     email = table.Column<string>(type: "text", nullable: false),

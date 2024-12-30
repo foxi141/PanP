@@ -30,8 +30,8 @@ namespace Kalkulator_paliwka.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<double>("Distance")
-                        .HasColumnType("double precision");
+                    b.Property<int>("Distance")
+                        .HasColumnType("integer");
 
                     b.Property<double>("FuelConsumption")
                         .HasColumnType("double precision");
@@ -53,11 +53,8 @@ namespace Kalkulator_paliwka.Migrations
 
             modelBuilder.Entity("KalkulatorPaliwka.Models.User", b =>
                 {
-                    b.Property<int>("userid")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("userid"));
+                    b.Property<string>("userid")
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("createdat")
                         .HasColumnType("timestamp with time zone");

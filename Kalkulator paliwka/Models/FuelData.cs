@@ -1,18 +1,26 @@
-﻿namespace KalkulatorPaliwka.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace KalkulatorPaliwka.Models
 {
     public class FuelData
     {
-        public int Id { get; set; }
-        public string userid    { get; set; } // Nazwa użytkownika
-        public double Distance { get; set; } // Przejechane kilometry
-        public double FuelConsumption { get; set; } // Spalanie w litrach na 100 km
-        public double FuelPrice { get; set; } // Cena paliwa za litr
-        public double TotalCost { get; set; } // Całkowity koszt paliwa (obliczany)
+        [Key] // Określenie klucza głównego
+        public int Id { get; set; } // Klucz główny
+        [Required(ErrorMessage = "Kilometry są wymagane.")]
+        [Range(1, int.MaxValue, ErrorMessage = "Kilometry muszą być większe od 0.")]
+        public int Distance { get; set; }
 
-        // Metoda do obliczenia kosztu paliwa
-        public void CalculateTotalCost()
-        {
-            TotalCost = (Distance / 100) * FuelConsumption * FuelPrice;
-        }
+        [Required(ErrorMessage = "Spalanie jest wymagane.")]
+        [Range(0.1, double.MaxValue, ErrorMessage = "Spalanie musi być większe od 0.")]
+        public double FuelConsumption { get; set; }
+
+        [Required(ErrorMessage = "Cena paliwa jest wymagana.")]
+        [Range(0.01, double.MaxValue, ErrorMessage = "Cena paliwa musi być większa od 0.")]
+        public double FuelPrice { get; set; }
+
+        public double TotalCost { get; set; }
+        public string? userid { get; set; }  // Jeśli chcesz, aby mogło być null
+        // Usuń [Required], jeśli przypisujesz userid w kontrolerze
+      
     }
 }

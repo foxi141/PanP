@@ -2,7 +2,7 @@
 {
     public class User
     {
-        public int userid { get; set; }
+        public string userid { get; set; }
         public string username { get; set; }
         public string passwordhash { get; set; } // Zmieniono nazwę pola
         public string email { get; set; }
