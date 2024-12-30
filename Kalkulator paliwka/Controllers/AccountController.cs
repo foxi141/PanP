@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
-using KalkulatorPaliwka.Models;
 using KalkulatorPaliwka.Data;
+using KalkulatorPaliwka.Models;
+using System.Linq;
+using Microsoft.AspNetCore.Http;
 
 namespace KalkulatorPaliwka.Controllers
 {
@@ -14,36 +15,45 @@ namespace KalkulatorPaliwka.Controllers
             _context = context;
         }
 
-        // Widok logowania
-        [HttpGet]
+        // GET: Login page
         public IActionResult Login()
         {
-            return View();
+            // Upewniamy się, że widok otrzymuje pusty model
+            return View(new LoginViewModel());
         }
 
-        // Obsługa logowania
+        // POST: Login
         [HttpPost]
-        public IActionResult Login(string username, string password)
+        public IActionResult Login(LoginViewModel model)
         {
-            // Sprawdzanie poprawności logowania
-            var user = _context.Users.FirstOrDefault(u => u.username == username && u.passwordhash == password);
-            if (user != null)
+            if (ModelState.IsValid)
             {
-                // Przechowanie nazwy użytkownika w sesji
-                HttpContext.Session.SetString("Username", user.username);
-                return RedirectToAction("Add", "FuelData");  // Przekierowanie do strony dodawania danych paliwa
+                // Sprawdzanie, czy użytkownik istnieje w bazie danych PostgreSQL
+                var user = _context.Users
+                    .FirstOrDefault(u => u.username == model.username && u.passwordhash == model.passwordhash);
+
+                if (user != null)
+                {
+                    // Ustawienie sesji użytkownika
+                    HttpContext.Session.SetString("username", user.username);
+
+                    // Przekierowanie do kalkulatora
+                    return RedirectToAction("Add", "FuelData");
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Niepoprawna nazwa użytkownika lub hasło.");
+                }
             }
 
-            // Jeśli dane są niepoprawne, zwróć widok logowania
-            ModelState.AddModelError("", "Nieprawidłowy login lub hasło");
-            return View();
+            return View(model); // Przekazywanie modelu z błędami walidacji do widoku
         }
 
-        // Wylogowanie
+        // Log out
         public IActionResult Logout()
         {
-            HttpContext.Session.Remove("Username");
-            return RedirectToAction("Login", "Account");
+            HttpContext.Session.Clear();  // Usunięcie sesji
+            return RedirectToAction("Login");  // Po wylogowaniu przekierowanie na stronę logowania
         }
     }
 }

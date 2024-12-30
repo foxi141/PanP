@@ -3,10 +3,16 @@
     public class FuelData
     {
         public int Id { get; set; }
-        public int userid { get; set; }
-        public DateTime Date { get; set; }
-        public decimal AverageConsumption { get; set; } // Średnie spalanie (l/100km)
-        public int Distance { get; set; } // Przebyte kilometry
-        public decimal FuelConsumed { get; set; } // Spalone paliwo (l)
+        public string userid    { get; set; } // Nazwa użytkownika
+        public double Distance { get; set; } // Przejechane kilometry
+        public double FuelConsumption { get; set; } // Spalanie w litrach na 100 km
+        public double FuelPrice { get; set; } // Cena paliwa za litr
+        public double TotalCost { get; set; } // Całkowity koszt paliwa (obliczany)
+
+        // Metoda do obliczenia kosztu paliwa
+        public void CalculateTotalCost()
+        {
+            TotalCost = (Distance / 100) * FuelConsumption * FuelPrice;
+        }
     }
 }

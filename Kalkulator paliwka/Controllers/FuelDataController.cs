@@ -1,8 +1,10 @@
-﻿using KalkulatorPaliwka.Data;
+﻿using Microsoft.AspNetCore.Mvc;
+using KalkulatorPaliwka.Data;
 using KalkulatorPaliwka.Models;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace KalkulatorPaliwka.Controllers
 {
@@ -15,79 +17,91 @@ namespace KalkulatorPaliwka.Controllers
             _context = context;
         }
 
-        // Strona dodawania danych paliwa
-        [HttpGet]
-        public IActionResult Add()
+        // Sprawdzanie, czy użytkownik jest zalogowany
+        private bool IsUserLoggedIn()
         {
-            var username = HttpContext.Session.GetString("Username");
-            if (string.IsNullOrEmpty(username))
-            {
-                return RedirectToAction("Login", "Account");  // Jeśli użytkownik nie jest zalogowany, przekierowanie do logowania
-            }
-
-            // Tworzenie nowego obiektu FuelData z domyślnymi wartościami
-            var model = new FuelData
-            {
-                FuelConsumed = 0  // Ustawienie domyślnej wartości dla spalonego paliwa
-            };
-
-            return View(model);
+            var username = HttpContext.Session.GetString("username");
+            return !string.IsNullOrEmpty(username);
         }
 
-        // Obsługa formularza dodawania danych paliwa
+        // GET: Add fuel data
+        public IActionResult Add()
+        {
+            if (!IsUserLoggedIn())
+            {
+                return RedirectToAction("Login", "Account"); // Przekierowanie do logowania, jeśli użytkownik nie jest zalogowany
+            }
+
+            return View(new FuelData());  // Zwróć pusty model dla widoku
+        }
+
+        // POST: Add fuel data
         [HttpPost]
         public async Task<IActionResult> Add(FuelData model)
         {
-            var username = HttpContext.Session.GetString("Username");
-            if (string.IsNullOrEmpty(username))
+            if (!IsUserLoggedIn())
             {
-                return RedirectToAction("Login", "Account");  // Jeśli użytkownik nie jest zalogowany, przekierowanie do logowania
+                return RedirectToAction("Login", "Account"); // Przekierowanie do logowania, jeśli użytkownik nie jest zalogowany
             }
 
-            // Obliczanie spalonego paliwa na podstawie średniego spalania i przebytego dystansu
-            if (model.AverageConsumption > 0 && model.Distance > 0)
+            // Jeśli model jest poprawny
+            if (ModelState.IsValid)
             {
-                model.FuelConsumed = CalculateFuelConsumption(model.AverageConsumption, model.Distance);
-            }
-            else
-            {
-                // Jeśli dane są nieprawidłowe, ustawienie komunikatu
-                TempData["Error"] = "Podaj poprawne wartości dla średniego spalania i przebytego dystansu.";
-                return View(model);
-            }
+              
 
-            // Przypisanie użytkownika
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.username == username);
-            if (user != null)
-            {
-                model.userid = user.userid;
+                // Sprawdzamy czy mamy odpowiednie dane
+                if (model.Distance <= 0 || model.FuelConsumption <= 0)
+                {
+                    ModelState.AddModelError(string.Empty, "Proszę podać poprawne wartości dla kilometrów i spalania.");
+                    return View(model);
+                }
+
+                // Oblicz całkowity koszt
+                model.TotalCost = (model.Distance * model.FuelConsumption) / 100 * model.FuelPrice;
+
+                // Przypisanie użytkownika do danych
+                model.userid = HttpContext.Session.GetString("username");
+
+                // Sprawdzamy, czy mamy poprawny userid
+                if (string.IsNullOrEmpty(model.userid))
+                {
+                    return RedirectToAction("Login", "Account");  // Jeśli nie ma usera w sesji, przekieruj do logowania
+                }
+
+                // Dodanie danych do bazy
                 _context.FuelData.Add(model);
-                await _context.SaveChangesAsync();
-                return RedirectToAction("History");
+                await _context.SaveChangesAsync();  // Zapisz dane w bazie
+
+                return RedirectToAction("History");  // Po zapisaniu danych przekierowanie do historii
             }
 
+            // Jeśli model jest niepoprawny, wróć do widoku z błędami
             return View(model);
         }
 
-        // Wyliczenie spalonego paliwa
-        private double CalculateFuelConsumption(double averageConsumption, double distance)
+        // GET: History of fuel data
+        public async Task<IActionResult> History()
         {
-            return (averageConsumption / 100) * distance;
-        }
-
-        // Widok z historią danych paliwa
-        public IActionResult History()
-        {
-            var username = HttpContext.Session.GetString("Username");
-            if (string.IsNullOrEmpty(username))
+            if (!IsUserLoggedIn())
             {
-                return RedirectToAction("Login", "Account");  // Jeśli użytkownik nie jest zalogowany, przekierowanie do logowania
+                return RedirectToAction("Login", "Account");  // Jeśli użytkownik nie jest zalogowany, przekieruj do logowania
             }
 
-            var user = _context.Users.FirstOrDefault(u => u.username == username);
-            var fuelData = _context.FuelData.Where(f => f.userid == user.userid).ToList();
+            var username = HttpContext.Session.GetString("username");
 
-            return View(fuelData);
+            // Sprawdzanie, czy 'username' jest null
+            if (string.IsNullOrEmpty(username))
+            {
+                return RedirectToAction("Login", "Account");  // Jeśli username jest null, przekieruj do logowania
+            }
+
+            // Pobieramy dane paliwa dla użytkownika
+            var data = await _context.FuelData
+                .Where(f => f.userid == username)
+                .ToListAsync();
+
+            // Przekazujemy dane do widoku
+            return View(data);
         }
     }
 }

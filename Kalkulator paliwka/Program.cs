@@ -1,4 +1,5 @@
-﻿using KalkulatorPaliwka.Data;
+﻿using Microsoft.AspNetCore.Mvc;
+using KalkulatorPaliwka.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,7 +11,16 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))); // Używamy Npgsql dla PostgreSQL
 
-builder.Services.AddSession();
+// Add session service
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30); // Określenie czasu trwania sesji
+    options.Cookie.HttpOnly = true;  // Włączenie bezpieczeństwa ciasteczek sesji
+    options.Cookie.IsEssential = true;  // Ustawienie, że ciasteczka są niezbędne
+});
+
+// Add any other necessary services, such as logging, etc.
+builder.Services.AddLogging();
 
 var app = builder.Build();
 
@@ -21,17 +31,19 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-app.UseSession();
+
+// Enable session middleware
+app.UseSession(); // Włączenie obsługi sesji
+
 app.UseAuthorization();
 
+// Configure routes and map controllers
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-
 
 app.Run();

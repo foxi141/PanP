@@ -1,35 +1,38 @@
 ﻿@model KalkulatorPaliwka.Models.FuelData
 
 @{
-    Layout = "_Layout";
+    ViewData["Title"] = "Add Fuel Data";
 }
 
-<h2>Dodaj dane paliwa</h2>
+<h2>Add Fuel Data</h2>
 
-<form method="post">
-    <div class="form-group">
-        <label for="AverageConsumption">Średnie spalanie (l/100 km):</label>
-        <input type="number" step="0.01" name="AverageConsumption" class="form-control" required value="@Model.AverageConsumption" />
+<form method="post" asp-action="Add">
+    <div>
+        <label for="Kilometers">Kilometers</label>
+        <input type="number" id="Kilometers" name="Kilometers" value="@Model.Distance" />
+    </div>
+    <div>
+        <label for="FuelConsumption">Fuel Consumption (L/100km)</label>
+        <input type="number" id="FuelConsumption" name="FuelConsumption" value="@Model.FuelConsumption" />
+    </div>
+    <div>
+        <label for="FuelPrice">Fuel Price</label>
+        <input type="number" id="FuelPrice" name="FuelPrice" value="@Model.FuelPrice" />
+    </div>
+    <div>
+        <label for="TotalCost">Total Cost</label>
+        <input type="number" id="TotalCost" name="TotalCost" value="@Model.TotalCost" readonly />
     </div>
 
-    <div class="form-group">
-        <label for="Distance">Przebyte km:</label>
-        <input type="number" name="Distance" class="form-control" required value="@Model.Distance" />
-    </div>
+    <button type="submit">Add</button>
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div style="color:red;">
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <p>@error.ErrorMessage</p>
+            }
+        </div>
+    }
 
-    <div class="form-group">
-        <label for="FuelConsumed">Spalone paliwo (l):</label>
-        <input type="number" name="FuelConsumed" class="form-control" disabled value="@Model.FuelConsumed" />
-    </div>
-
-    <button type="submit" class="btn btn-success">Dodaj</button>
 </form>
-
-@if (TempData["Error"] != null)
-{
-    <div class="alert alert-danger mt-3">
-        @TempData["Error"]
-    </div>
-}
-
-<a href="@Url.Action("History", "FuelData")" class="btn btn-primary mt-3">Zobacz historię</a>

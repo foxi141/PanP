@@ -1,26 +1,29 @@
-﻿@{
+﻿@model KalkulatorPaliwka.Models.LoginViewModel
+
+@{
     ViewData["Title"] = "Login";
 }
 
 <h2>Login</h2>
 
-<form asp-action="Login" method="post">
+<form method="post" asp-action="Login">
     <div>
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required />
+        <label for="Username">Username</label>
+        <input type="text" id="Username" name="username" value="@Model.username" />
     </div>
     <div>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required />
+        <label for="Password">Password</label>
+        <input type="password" id="Password" name="passwordhash" value="@Model.passwordhash" />
     </div>
-    <div>
-        <button type="submit">Login</button>
-    </div>
+    <button type="submit">Login</button>
 </form>
 
-@if (ViewBag.Error != null)
+@if (!ViewData.ModelState.IsValid)
 {
-    <div style="color: red;">
-        @ViewBag.Error
+    <div style="color:red;">
+        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+        {
+            <p>@error.ErrorMessage</p>
+        }
     </div>
 }
