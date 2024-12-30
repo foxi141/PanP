@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using KalkulatorPaliwka.Models;
+using Kalkulator_paliwka.Models;
 
 namespace KalkulatorPaliwka.Data
 {
@@ -7,6 +8,10 @@ namespace KalkulatorPaliwka.Data
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-        public DbSet<User> Users { get; set; } // W zależności od Twojej struktury modelu
+        // DbSet dla użytkowników
+        public DbSet<User> Users { get; set; }
+
+        // DbSet dla danych o paliwie
+        public DbSet<FuelData> FuelData { get; set; }
     }
 }

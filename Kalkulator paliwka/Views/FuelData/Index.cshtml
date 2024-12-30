@@ -1,0 +1,11 @@
+﻿@{
+    var username = ViewBag.Username as string;
+}
+
+<h2>Witaj, @username!</h2>
+<p>To jest strona główna zalogowanego użytkownika.</p>
+
+@if (!string.IsNullOrEmpty(username))
+{
+    <a href="@Url.Action("Add", "FuelData")" class="btn btn-primary">Dodaj dane paliwa</a>
+}

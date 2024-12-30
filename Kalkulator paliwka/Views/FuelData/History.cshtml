@@ -1,0 +1,27 @@
+﻿@model IEnumerable<KalkulatorPaliwka.Models.FuelData>
+
+<h2>Historia danych paliwa</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Data</th>
+            <th>Średnie spalanie (l/100km)</th>
+            <th>Przebyte km</th>
+            <th>Spalone paliwo (l)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Date.ToString("yyyy-MM-dd")</td>
+                <td>@item.AverageConsumption</td>
+                <td>@item.Distance</td>
+                <td>@item.FuelConsumed</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("Add", "FuelData")" class="btn btn-primary">Dodaj dane paliwa</a>

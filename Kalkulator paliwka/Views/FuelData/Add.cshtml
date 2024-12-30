@@ -1,0 +1,35 @@
+﻿@model KalkulatorPaliwka.Models.FuelData
+
+@{
+    Layout = "_Layout";
+}
+
+<h2>Dodaj dane paliwa</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label for="AverageConsumption">Średnie spalanie (l/100 km):</label>
+        <input type="number" step="0.01" name="AverageConsumption" class="form-control" required value="@Model.AverageConsumption" />
+    </div>
+
+    <div class="form-group">
+        <label for="Distance">Przebyte km:</label>
+        <input type="number" name="Distance" class="form-control" required value="@Model.Distance" />
+    </div>
+
+    <div class="form-group">
+        <label for="FuelConsumed">Spalone paliwo (l):</label>
+        <input type="number" name="FuelConsumed" class="form-control" disabled value="@Model.FuelConsumed" />
+    </div>
+
+    <button type="submit" class="btn btn-success">Dodaj</button>
+</form>
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger mt-3">
+        @TempData["Error"]
+    </div>
+}
+
+<a href="@Url.Action("History", "FuelData")" class="btn btn-primary mt-3">Zobacz historię</a>

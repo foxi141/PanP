@@ -1,8 +1,7 @@
-﻿using KalkulatorPaliwka.Data;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using KalkulatorPaliwka.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;  // Dodajemy przestrzeń nazw dla obsługi sesji
-using System.Linq;
+using KalkulatorPaliwka.Data;
 
 namespace KalkulatorPaliwka.Controllers
 {
@@ -15,36 +14,36 @@ namespace KalkulatorPaliwka.Controllers
             _context = context;
         }
 
+        // Widok logowania
         [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
 
+        // Obsługa logowania
         [HttpPost]
         public IActionResult Login(string username, string password)
         {
-            // Sprawdzenie, czy użytkownik istnieje w bazie danych
-            var user = _context.Users.SingleOrDefault(u => u.username == username && u.passwordhash == password);
-
+            // Sprawdzanie poprawności logowania
+            var user = _context.Users.FirstOrDefault(u => u.username == username && u.passwordhash == password);
             if (user != null)
             {
-                // Zapisujemy ID użytkownika w sesji
-                HttpContext.Session.SetString("UserId", user.userid.ToString());
-                return RedirectToAction("Index", "Home");  // Przekierowanie na stronę główną
+                // Przechowanie nazwy użytkownika w sesji
+                HttpContext.Session.SetString("Username", user.username);
+                return RedirectToAction("Add", "FuelData");  // Przekierowanie do strony dodawania danych paliwa
             }
 
-            // Jeśli dane są błędne, wyświetlamy komunikat o błędzie
-            ViewBag.Error = "Invalid username or password";
+            // Jeśli dane są niepoprawne, zwróć widok logowania
+            ModelState.AddModelError("", "Nieprawidłowy login lub hasło");
             return View();
         }
 
-        [HttpGet]
+        // Wylogowanie
         public IActionResult Logout()
         {
-            // Usuwamy dane z sesji
-            HttpContext.Session.Clear();
-            return RedirectToAction("Login");  // Przekierowanie do strony logowania
+            HttpContext.Session.Remove("Username");
+            return RedirectToAction("Login", "Account");
         }
     }
 }
