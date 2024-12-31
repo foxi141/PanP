@@ -1,0 +1,65 @@
+﻿@using KalkulatorPaliwka.Models
+
+@{
+    ViewData["Title"] = "Panel Administracyjny";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<h3>Użytkownicy</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nazwa użytkownika</th>
+            <th>E-mail</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in (List<KalkulatorPaliwka.Models.User>)ViewData["username"])
+        {
+            <tr>
+                <td>@user.username</td>
+                <td>@user.email</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h3>Pojazdy</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Marka</th>
+            <th>Model</th>
+            <th>Numer rejestracyjny</th>
+            <th>Użytkownik</th>
+        </tr>
+    </thead>
+
+</table>
+
+<h3>Historia</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Użytkownik</th>
+            <th>Data</th>
+            <th>Zużycie paliwa</th>
+            <th>Całkowity koszt</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var history in (List<KalkulatorPaliwka.Models.UserHistory>)ViewData["Histories"])
+        {
+            <tr>
+                <td>@history.username</td>
+                <td>@history.Date.ToString("yyyy-MM-dd")</td>
+                <td>@history.FuelConsumption</td>
+                <td>@history.TotalCost</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("AddUser")" class="btn btn-primary">Dodaj użytkownika</a>
+<a href="@Url.Action("AddVehicle")" class="btn btn-primary">Dodaj pojazd</a>

@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Kalkulator_paliwka.Migrations
 {
     /// <inheritdoc />
-    public partial class migracjadwa : Migration
+    public partial class AddUserModel : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -22,11 +22,27 @@ namespace Kalkulator_paliwka.Migrations
                     FuelConsumption = table.Column<double>(type: "double precision", nullable: false),
                     FuelPrice = table.Column<double>(type: "double precision", nullable: false),
                     TotalCost = table.Column<double>(type: "double precision", nullable: false),
-                    userid = table.Column<string>(type: "text", nullable: false)
+                    userid = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_FuelData", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserHistories",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    username = table.Column<string>(type: "text", nullable: false),
+                    Date = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    FuelConsumption = table.Column<double>(type: "double precision", nullable: false),
+                    TotalCost = table.Column<double>(type: "double precision", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserHistories", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -43,6 +59,22 @@ namespace Kalkulator_paliwka.Migrations
                 {
                     table.PrimaryKey("PK_Users", x => x.userid);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "Vehicles",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Brand = table.Column<string>(type: "text", nullable: false),
+                    Model = table.Column<string>(type: "text", nullable: false),
+                    RegistrationNumber = table.Column<string>(type: "text", nullable: false),
+                    username = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Vehicles", x => x.Id);
+                });
         }
 
         /// <inheritdoc />
@@ -52,7 +84,13 @@ namespace Kalkulator_paliwka.Migrations
                 name: "FuelData");
 
             migrationBuilder.DropTable(
+                name: "UserHistories");
+
+            migrationBuilder.DropTable(
                 name: "Users");
+
+            migrationBuilder.DropTable(
+                name: "Vehicles");
         }
     }
 }

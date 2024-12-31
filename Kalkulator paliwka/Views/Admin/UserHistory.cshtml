@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Historia Paliwa Użytkownika";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<h4>Historia paliwa dla użytkownika: @Model.username</h4>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Data</th>
+            <th>Odległość</th>
+            <th>Spalanie</th>
+            <th>Cena paliwa</th>
+            <th>Całkowity koszt</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var fuelData in Model.FuelHistory)
+        {
+            <tr>
+                <td>@fuelData.Date</td>
+                <td>@fuelData.Distance</td>
+                <td>@fuelData.FuelConsumption</td>
+                <td>@fuelData.FuelPrice</td>
+                <td>@fuelData.TotalCost</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -20,7 +20,11 @@ builder.Services.AddSession(options =>
 });
 
 // Add any other necessary services, such as logging, etc.
-builder.Services.AddLogging();
+builder.Services.AddLogging(options =>
+{
+    options.AddConsole();  // Logowanie do konsoli
+    options.AddDebug();    // Logowanie do debugera (Visual Studio)
+});
 
 var app = builder.Build();
 
