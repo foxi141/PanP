@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Kalkulator_paliwka.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241231002346_AddUserModel")]
-    partial class AddUserModel
+    [Migration("20250102103658_Add")]
+    partial class Add
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,8 +33,8 @@ namespace Kalkulator_paliwka.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Distance")
-                        .HasColumnType("integer");
+                    b.Property<double>("Distance")
+                        .HasColumnType("double precision");
 
                     b.Property<double>("FuelConsumption")
                         .HasColumnType("double precision");
@@ -45,10 +45,16 @@ namespace Kalkulator_paliwka.Migrations
                     b.Property<double>("TotalCost")
                         .HasColumnType("double precision");
 
+                    b.Property<int>("VehicleId")
+                        .HasColumnType("integer");
+
                     b.Property<string>("userid")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("VehicleId");
 
                     b.ToTable("FuelData");
                 });
@@ -80,11 +86,8 @@ namespace Kalkulator_paliwka.Migrations
 
             modelBuilder.Entity("KalkulatorPaliwka.Models.UserHistory", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("timestamp with time zone");
@@ -104,7 +107,7 @@ namespace Kalkulator_paliwka.Migrations
                     b.ToTable("UserHistories");
                 });
 
-            modelBuilder.Entity("KalkulatorPaliwka.Models.Vehicle", b =>
+            modelBuilder.Entity("KalkulatorPaliwka.Models.Vehicles", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -131,6 +134,17 @@ namespace Kalkulator_paliwka.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Vehicles");
+                });
+
+            modelBuilder.Entity("KalkulatorPaliwka.Models.FuelData", b =>
+                {
+                    b.HasOne("KalkulatorPaliwka.Models.Vehicles", "Vehicle")
+                        .WithMany()
+                        .HasForeignKey("VehicleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Vehicle");
                 });
 #pragma warning restore 612, 618
         }

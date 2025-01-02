@@ -1,28 +1,68 @@
 ﻿@model IEnumerable<KalkulatorPaliwka.Models.FuelData>
 
 @{
-    ViewData["Title"] = "History of Fuel Data";
+    ViewData["Title"] = "Fuel Data History";
+    var vehicles = ViewData["Vehicles"] as IEnumerable<KalkulatorPaliwka.Models.Vehicles>;
+    int? selectedVehicleId = ViewData["SelectedVehicleId"] as int?;
 }
 
-<h2>History of Fuel Data</h2>
+<h2>Fuel Data History</h2>
 
+<!-- Vehicle Filter -->
+<form method="get" asp-action="History">
+    <label for="VehicleFilter">Filter by Vehicle:</label>
+    <select id="VehicleFilter" name="vehicleId">
+        <option value="">-- All Vehicles --</option>
+        @if (vehicles != null)
+        {
+            foreach (var vehicle in vehicles)
+            {
+                bool isSelected = selectedVehicleId.HasValue && selectedVehicleId.Value == vehicle.Id;
+                if (isSelected)
+                {
+                    <option value="@vehicle.Id" selected>
+                        @vehicle.Brand @vehicle.Model (@vehicle.RegistrationNumber)
+                    </option>
+                }
+                else
+                {
+                    <option value="@vehicle.Id">
+                        @vehicle.Brand @vehicle.Model (@vehicle.RegistrationNumber)
+                    </option>
+                }
+            }
+        }
+    </select>
+    <button type="submit">Filter</button>
+</form>
+
+<!-- Fuel Data Table -->
 <table>
     <thead>
         <tr>
             <th>Distance (km)</th>
-            <th>Fuel Consumption (L/100 km)</th>
+            <th>Fuel Consumption (L/100km)</th>
             <th>Fuel Price (PLN/L)</th>
             <th>Total Cost (PLN)</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Distance</td>
+                    <td>@item.FuelConsumption</td>
+                    <td>@item.FuelPrice</td>
+                    <td>@item.TotalCost</td>
+                </tr>
+            }
+        }
+        else
         {
             <tr>
-                <td>@item.Distance</td>  <!-- Zmienione na 'Kilometers' -->
-                <td>@item.FuelConsumption</td>
-                <td>@item.FuelPrice</td>
-                <td>@item.TotalCost</td>
+                <td colspan="4">No data available.</td>
             </tr>
         }
     </tbody>

@@ -4,7 +4,6 @@ using KalkulatorPaliwka.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 
 namespace KalkulatorPaliwka.Controllers
 {
@@ -17,90 +16,63 @@ namespace KalkulatorPaliwka.Controllers
             _context = context;
         }
 
-        // Sprawdzanie, czy użytkownik jest zalogowany
-        private bool IsUserLoggedIn()
-        {
-            var username = HttpContext.Session.GetString("username");
-            return !string.IsNullOrEmpty(username);
-        }
-
         // GET: Add fuel data
         public IActionResult Add()
         {
-            if (!IsUserLoggedIn())
-            {
-                return RedirectToAction("Login", "Account"); // Przekierowanie do logowania, jeśli użytkownik nie jest zalogowany
-            }
-
-            return View(new FuelData());  // Zwróć pusty model dla widoku
+            // Fetch all vehicles for the dropdown
+            var vehicles = _context.Vehicles.ToList();
+            ViewData["Vehicles"] = vehicles; // Pass vehicles to the view
+            return View(new FuelData());
         }
 
         // POST: Add fuel data
         [HttpPost]
         public async Task<IActionResult> Add(FuelData model)
         {
-            if (!IsUserLoggedIn())
-            {
-                return RedirectToAction("Login", "Account"); // Przekierowanie do logowania, jeśli użytkownik nie jest zalogowany
-            }
-
-            // Jeśli model jest poprawny
             if (ModelState.IsValid)
             {
-                // Przypisanie użytkownika do danych
-                model.userid = HttpContext.Session.GetString("username");
-
-                // Sprawdzamy, czy mamy poprawny userid
-                if (string.IsNullOrEmpty(model.userid))
+                // Validate the selected VehicleId
+                var vehicle = await _context.Vehicles.FindAsync(model.Vehicleid);
+                if (vehicle == null)
                 {
-                    ModelState.AddModelError("userid", "Nie znaleziono użytkownika w sesji.");
-                    return View(model);  // Jeśli nie ma usera w sesji, wyświetl błąd
-                }
-
-                // Sprawdzamy czy mamy odpowiednie dane
-                if (model.Distance <= 0 || model.FuelConsumption <= 0)
-                {
-                    ModelState.AddModelError(string.Empty, "Proszę podać poprawne wartości dla kilometrów i spalania.");
+                    ModelState.AddModelError("Vehicleid", "Invalid vehicle selection.");
+                    ViewData["Vehicles"] = _context.Vehicles.ToList(); // Repopulate dropdown
                     return View(model);
                 }
 
-                // Oblicz całkowity koszt
+                // Calculate the total cost
                 model.TotalCost = (model.Distance * model.FuelConsumption) / 100 * model.FuelPrice;
 
-                // Dodanie danych do bazy
+                // Save FuelData to the database
                 _context.FuelData.Add(model);
-                await _context.SaveChangesAsync();  // Zapisz dane w bazie
+                await _context.SaveChangesAsync();
 
-                return RedirectToAction("History");  // Po zapisaniu danych przekierowanie do historii
+                return RedirectToAction("History");
             }
 
-            // Jeśli model jest niepoprawny, wróć do widoku z błędami
+            // Repopulate vehicles in case of validation errors
+            ViewData["Vehicles"] = _context.Vehicles.ToList();
             return View(model);
         }
 
         // GET: History of fuel data
-        public async Task<IActionResult> History()
+        public async Task<IActionResult> History(int? vehicleId)
         {
-            if (!IsUserLoggedIn())
+            // Fetch all Vehicles for the dropdown
+            var vehicles = await _context.Vehicles.ToListAsync();
+            ViewData["Vehicles"] = vehicles;
+
+            // Fetch FuelData and optionally filter by vehicleId
+            var fuelDataQuery = _context.FuelData.AsQueryable();
+
+            if (vehicleId.HasValue)
             {
-                return RedirectToAction("Login", "Account");  // Jeśli użytkownik nie jest zalogowany, przekieruj do logowania
+                fuelDataQuery = fuelDataQuery.Where(f => f.Vehicleid == vehicleId.Value);
             }
 
-            var username = HttpContext.Session.GetString("username");
+            var fuelData = await fuelDataQuery.ToListAsync();
 
-            // Sprawdzanie, czy 'username' jest null
-            if (string.IsNullOrEmpty(username))
-            {
-                return RedirectToAction("Login", "Account");  // Jeśli username jest null, przekieruj do logowania
-            }
-
-            // Pobieramy dane paliwa dla użytkownika
-            var data = await _context.FuelData
-                .Where(f => f.userid == username)
-                .ToListAsync();
-
-            // Przekazujemy dane do widoku
-            return View(data);
+            return View(fuelData);
         }
     }
 }

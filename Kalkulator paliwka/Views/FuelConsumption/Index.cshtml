@@ -1,0 +1,29 @@
+
+@model IEnumerable<dynamic>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Fuel Consumption</title>
+</head>
+<body>
+    <h1>Your Cars and Their Fuel Consumption</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Car Name</th>
+                <th>Fuel Consumption (L/100km)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var car in Model)
+            {
+                <tr>
+                    <td>@car.Name</td>
+                    <td>@car.FuelConsumption</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>

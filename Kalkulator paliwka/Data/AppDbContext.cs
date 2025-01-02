@@ -10,8 +10,9 @@ namespace KalkulatorPaliwka.Data
         {
         }
         public DbSet<User> Users { get; set; }
-       
+
         public DbSet<FuelData> FuelData { get; set; }
+
         public DbSet<Vehicles> Vehicles { get; set; }
         public DbSet<UserHistory> UserHistories { get; set; }
     }

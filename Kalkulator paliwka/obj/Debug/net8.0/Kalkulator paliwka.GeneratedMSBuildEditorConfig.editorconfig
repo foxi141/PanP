@@ -50,8 +50,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVXNlckhpc3RvcnkuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/kosic/Documents/GitHub/PanP/Kalkulator paliwka/Views/FuelConsumption/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRnVlbENvbnN1bXB0aW9uXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/kosic/Documents/GitHub/PanP/Kalkulator paliwka/Views/FuelData/Add.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRnVlbERhdGFcQWRkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/kosic/Documents/GitHub/PanP/Kalkulator paliwka/Views/FuelData/AssignedCarsFuelConsumption.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRnVlbERhdGFcQXNzaWduZWRDYXJzRnVlbENvbnN1bXB0aW9uLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/kosic/Documents/GitHub/PanP/Kalkulator paliwka/Views/FuelData/History.cshtml]
