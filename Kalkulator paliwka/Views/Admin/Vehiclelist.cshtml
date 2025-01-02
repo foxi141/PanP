@@ -1,0 +1,49 @@
+﻿@model IEnumerable<KalkulatorPaliwka.Models.Vehicles>
+
+@{
+    ViewData["Title"] = "Vehicle List";
+}
+
+<h2>Vehicle List</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Registration Number</th>
+            <th>Assigned User</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            int counter = 1;
+            foreach (var vehicle in Model)
+            {
+                <tr>
+                    <td>@counter</td>
+                    <td>@vehicle.Brand</td>
+                    <td>@vehicle.Model</td>
+                    <td>@vehicle.RegistrationNumber</td>
+                    <td>@vehicle.username ?? "Unassigned"</td>
+                    <td>
+                        <a asp-action="EditVehicle" asp-route-id="@vehicle.Id">Edit</a> |
+                        <a asp-action="DeleteVehicle" asp-route-id="@vehicle.Id">Delete</a>
+                    </td>
+                </tr>
+                counter++;
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="6" style="text-align:center;">No vehicles found.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="AddVehicle" class="btn btn-primary">Add Vehicle</a>

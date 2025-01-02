@@ -1,0 +1,23 @@
+@model KalkulatorPaliwka.Models.Vehicles
+
+@{
+    ViewData["Title"] = "Edit Vehicle";
+}
+
+<h2>Edit Vehicle</h2>
+
+<form method="post" asp-action="EditVehicle" asp-route-id="@Model.Id">
+    <div>
+        <label>Brand</label>
+        <input type="text" name="Brand" value="@Model.Brand" required />
+    </div>
+    <div>
+        <label>Model</label>
+        <input type="text" name="Model" value="@Model.Model" required />
+    </div>
+    <div>
+        <label>Registration Number</label>
+        <input type="text" name="RegistrationNumber" value="@Model.RegistrationNumber" required />
+    </div>
+    <button type="submit">Save</button>
+</form>

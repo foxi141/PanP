@@ -26,6 +26,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\kosic\Documents\GitHub\PanP\Kalkulator paliwka
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/kosic/Documents/GitHub/PanP/Kalkulator paliwka/Views/Account/Dashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxEYXNoYm9hcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/kosic/Documents/GitHub/PanP/Kalkulator paliwka/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -38,6 +42,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRkVmVoaWNsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/kosic/Documents/GitHub/PanP/Kalkulator paliwka/Views/Admin/AssignVehicle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQXNzaWduVmVoaWNsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/kosic/Documents/GitHub/PanP/Kalkulator paliwka/Views/Admin/DeleteVehicle.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRGVsZXRlVmVoaWNsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/kosic/Documents/GitHub/PanP/Kalkulator paliwka/Views/Admin/EditUser.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRWRpdFVzZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -48,6 +60,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/kosic/Documents/GitHub/PanP/Kalkulator paliwka/Views/Admin/UserHistory.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVXNlckhpc3RvcnkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/kosic/Documents/GitHub/PanP/Kalkulator paliwka/Views/Admin/Vehiclelist.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVmVoaWNsZWxpc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/kosic/Documents/GitHub/PanP/Kalkulator paliwka/Views/FuelConsumption/Index.cshtml]

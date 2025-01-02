@@ -50,4 +50,20 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+// Add additional routing if required
+app.MapControllerRoute(
+    name: "admin",
+    pattern: "{controller=Admin}/{action=UserHistory}/{id?}");
+app.MapControllerRoute(
+    name: "admin",
+    pattern: "{controller=Admin}/{action=AssignVehiclePost}/{id?}");
+// Konfiguracja ścieżek i middleware
+app.UseSession();  // Używanie sesji
+app.UseRouting();
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Account}/{action=Login}/{id?}"
+);
+
+
 app.Run();

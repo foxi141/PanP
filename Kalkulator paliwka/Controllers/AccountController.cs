@@ -16,38 +16,31 @@ namespace KalkulatorPaliwka.Controllers
         }
 
         // GET: Login page
-        public IActionResult Login()
-        {
-            // Upewniamy się, że widok otrzymuje pusty model
-            return View(new LoginViewModel());
-        }
-
-        // POST: Login
-        [HttpPost]
         public IActionResult Login(LoginViewModel model)
         {
             if (ModelState.IsValid)
             {
-                // Sprawdzanie, czy użytkownik istnieje w bazie danych PostgreSQL
                 var user = _context.Users
                     .FirstOrDefault(u => u.username == model.username && u.passwordhash == model.passwordhash);
 
                 if (user != null)
                 {
-                    // Ustawienie sesji użytkownika
-                    HttpContext.Session.SetString("username", user.username);
+                    // Set userId in session
+                    HttpContext.Session.SetString("username", user.username);  // Przypisujemy 'username' do sesji
 
-                    // Przekierowanie do kalkulatora
+                    Console.WriteLine($"User logged in: {user.username}");  // Dodajemy debugowanie, żeby sprawdzić wartość
+
                     return RedirectToAction("Add", "FuelData");
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Niepoprawna nazwa użytkownika lub hasło.");
+                    ModelState.AddModelError(string.Empty, "Invalid username or password.");
                 }
             }
 
-            return View(model); // Przekazywanie modelu z błędami walidacji do widoku
+            return View(model);  // Returning view with validation errors
         }
+
 
         // Log out
         public IActionResult Logout()

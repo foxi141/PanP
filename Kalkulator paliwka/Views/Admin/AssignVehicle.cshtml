@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "Assign Vehicle to User";
+    var users = ViewData["Users"] as IEnumerable<KalkulatorPaliwka.Models.User>;
+    var vehicles = ViewData["Vehicles"] as IEnumerable<KalkulatorPaliwka.Models.Vehicles>;
+}
+
+<h2>Assign Vehicle to User</h2>
+
+<form method="post" asp-action="AssignVehicle">
+    <div>
+        <label for="userId">Select User:</label>
+        <select id="userId" name="userId" required>
+            <option value="">-- Select User --</option>
+            @if (users != null)
+            {
+                foreach (var user in users)
+                {
+                    <option value="@user.userid">@user.username</option>
+                }
+            }
+        </select>
+    </div>
+
+    <div>
+        <label for="vehicleId">Select Vehicle:</label>
+        <select id="vehicleId" name="vehicleId" required>
+            <option value="">-- Select Vehicle --</option>
+            @if (vehicles != null)
+            {
+                foreach (var vehicle in vehicles)
+                {
+                    <option value="@vehicle.Id">
+                        @vehicle.Brand @vehicle.Model (@vehicle.RegistrationNumber)
+                    </option>
+                }
+            }
+        </select>
+    </div>
+
+    <button type="submit">Assign</button>
+</form>

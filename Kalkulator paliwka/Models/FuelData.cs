@@ -8,7 +8,7 @@
         public double FuelPrice { get; set; }
         public double TotalCost { get; set; }
         public string userid { get; set; }
-        public int? Vehicleid { get; set; }
+        public int Vehicleid { get; set; }
 
     }
 }

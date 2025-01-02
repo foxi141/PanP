@@ -1,44 +1,46 @@
-﻿@{
-    ViewData["Title"] = "Historia Paliwa Użytkownika";
+﻿@model IEnumerable<KalkulatorPaliwka.Models.FuelData>
+
+@{
+    ViewData["Title"] = "User Fuel History";
+    var users = ViewData["Users"] as IEnumerable<KalkulatorPaliwka.Models.User>;
+    int? selectedUserId = ViewData["SelectedUserId"] as int?;
 }
 
-<h2>@ViewData["Title"]</h2>
+<h2>User Fuel History</h2>
 
-@if (TempData["SuccessMessage"] != null)
-{
-    <div class="alert alert-success">
-        @TempData["SuccessMessage"]
-    </div>
-}
+<!-- User Selection -->
+<form method="get" asp-action="UserHistory">
+    <label for="UserFilter">Select User:</label>
+    <select id="UserFilter" name="userId">
+        <option value="">-- Select User --</option>
+        @foreach (var user in users)
+        {
+            <option value="@user.userid">
+                @user.username
+            </option>
+        }
+    </select>
+    <button type="submit">Filter</button>
+</form>
 
-@if (TempData["ErrorMessage"] != null)
-{
-    <div class="alert alert-danger">
-        @TempData["ErrorMessage"]
-    </div>
-}
-
-<h4>Historia paliwa dla użytkownika: @Model.username</h4>
-
-<table class="table">
+<!-- Fuel Data Table -->
+<table>
     <thead>
         <tr>
-            <th>Data</th>
-            <th>Odległość</th>
-            <th>Spalanie</th>
-            <th>Cena paliwa</th>
-            <th>Całkowity koszt</th>
+            <th>Distance (km)</th>
+            <th>Fuel Consumption (L/100km)</th>
+            <th>Fuel Price (PLN/L)</th>
+            <th>Total Cost (PLN)</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var fuelData in Model.FuelHistory)
+        @foreach (var item in Model)
         {
             <tr>
-                <td>@fuelData.Date</td>
-                <td>@fuelData.Distance</td>
-                <td>@fuelData.FuelConsumption</td>
-                <td>@fuelData.FuelPrice</td>
-                <td>@fuelData.TotalCost</td>
+                <td>@item.Distance</td>
+                <td>@item.FuelConsumption</td>
+                <td>@item.FuelPrice</td>
+                <td>@item.TotalCost</td>
             </tr>
         }
     </tbody>
