@@ -1,23 +1,22 @@
 ﻿@model KalkulatorPaliwka.Models.Vehicles
 
-<h2>Add Vehicle</h2>
+<h1>Dodaj pojazd</h1>
 
-<form asp-action="AddVehicle" method="post">
-    @Html.AntiForgeryToken()
+<form method="post">
     <div>
-        <label for="Brand">Brand</label>
-        <input type="text" id="Brand" name="Brand" value="@Model?.Brand" required />
-        @Html.ValidationMessageFor(m => m.Brand)
+        <label for="Brand">Marka</label>
+        <input type="text" id="Brand" name="Brand" value="@Model.Brand" required />
     </div>
+
     <div>
         <label for="Model">Model</label>
-        <input type="text" id="Model" name="Model" value="@Model?.Model" required />
-        @Html.ValidationMessageFor(m => m.Model)
+        <input type="text" id="Model" name="Model" value="@Model.Model" required />
     </div>
+
     <div>
-        <label for="RegistrationNumber">Registration Number</label>
-        <input type="text" id="RegistrationNumber" name="RegistrationNumber" value="@Model?.RegistrationNumber" required />
-        @Html.ValidationMessageFor(m => m.RegistrationNumber)
+        <label for="RegistrationNumber">Numer rejestracyjny</label>
+        <input type="text" id="RegistrationNumber" name="RegistrationNumber" value="@Model.RegistrationNumber" required />
     </div>
-    <button type="submit">Add Vehicle</button>
+
+    <button type="submit">Dodaj pojazd</button>
 </form>

@@ -2,6 +2,7 @@
 
 @{
     var vehicles = ViewData["Vehicles"] as List<KalkulatorPaliwka.Models.Vehicles>;
+    var userid = Model.userid;  // Pobieramy userid z modelu
 }
 
 <!DOCTYPE html>
@@ -17,10 +18,8 @@
     @if (vehicles != null && vehicles.Any())
     {
         <form method="post">
-            <div>
-                <label for="userId">Wprowadź userId (jeśli nie jest dostępne w sesji):</label>
-                <input type="text" id="userId" name="userid" value="@Model.userid" />
-            </div>
+            <!-- Ukryte pole dla userid -->
+            <input type="hidden" name="userid" value="@userid" />
 
             <div>
                 <label for="Vehicleid">Wybierz pojazd</label>
@@ -55,5 +54,12 @@
     {
         <p>Nie masz przypisanych pojazdów. Proszę dodać pojazd w sekcji pojazdów.</p>
     }
+
+    <!-- Przycisk powrotu do dashboardu -->
+    <div>
+        <a href="@Url.Action("Index", "Dashboard")">
+            <button type="button">Powrót </button>
+        </a>
+    </div>
 </body>
 </html>

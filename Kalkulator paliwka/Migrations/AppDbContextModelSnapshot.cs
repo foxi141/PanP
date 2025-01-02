@@ -42,7 +42,7 @@ namespace Kalkulator_paliwka.Migrations
                     b.Property<double>("TotalCost")
                         .HasColumnType("double precision");
 
-                    b.Property<int?>("Vehicleid")
+                    b.Property<int>("Vehicleid")
                         .HasColumnType("integer");
 
                     b.Property<string>("userid")
@@ -122,7 +122,7 @@ namespace Kalkulator_paliwka.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("userid")
+                    b.Property<string>("username")
                         .HasColumnType("text");
 
                     b.HasKey("Id");

@@ -14,7 +14,7 @@ public class Vehicles
     [Required]
     public string RegistrationNumber { get; set; } // Numer rejestracyjny
 
-    public string username { get; set; } // Zmienione na Username
+    public string ?username { get; set; } // Zmienione na Username
 
     
 }

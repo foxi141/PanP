@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Kalkulator_paliwka.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250102103658_Add")]
-    partial class Add
+    [Migration("20250102220341_Addd1")]
+    partial class Addd1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -45,7 +45,7 @@ namespace Kalkulator_paliwka.Migrations
                     b.Property<double>("TotalCost")
                         .HasColumnType("double precision");
 
-                    b.Property<int>("VehicleId")
+                    b.Property<int>("Vehicleid")
                         .HasColumnType("integer");
 
                     b.Property<string>("userid")
@@ -53,8 +53,6 @@ namespace Kalkulator_paliwka.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("VehicleId");
 
                     b.ToTable("FuelData");
                 });
@@ -128,23 +126,11 @@ namespace Kalkulator_paliwka.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("username")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
 
                     b.ToTable("Vehicles");
-                });
-
-            modelBuilder.Entity("KalkulatorPaliwka.Models.FuelData", b =>
-                {
-                    b.HasOne("KalkulatorPaliwka.Models.Vehicles", "Vehicle")
-                        .WithMany()
-                        .HasForeignKey("VehicleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Vehicle");
                 });
 #pragma warning restore 612, 618
         }

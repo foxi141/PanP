@@ -48,7 +48,7 @@ app.UseAuthorization();
 // Configure routes and map controllers
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Account}/{action=Login}/{id?}");
 
 // Add additional routing if required
 app.MapControllerRoute(
@@ -57,13 +57,10 @@ app.MapControllerRoute(
 app.MapControllerRoute(
     name: "admin",
     pattern: "{controller=Admin}/{action=AssignVehiclePost}/{id?}");
-// Konfiguracja ścieżek i middleware
-app.UseSession();  // Używanie sesji
-app.UseRouting();
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Account}/{action=Login}/{id?}"
-);
 
+// Konfiguracja domyślnej trasy na Account/Login
+app.MapControllerRoute(
+    name: "login",
+    pattern: "{controller=Account}/{action=Login}/{id?}");  // Ustawiamy domyślny kontroler na Account i akcję Login
 
 app.Run();

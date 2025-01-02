@@ -25,12 +25,14 @@ namespace KalkulatorPaliwka.Controllers
 
                 if (user != null)
                 {
-                    // Set userId in session
-                    HttpContext.Session.SetString("username", user.username);  // Przypisujemy 'username' do sesji
+                    // Ustawiamy userid w sesji
+                    HttpContext.Session.SetString("userid", user.userid);  // Zapisujemy `userid` w sesji
+                    HttpContext.Session.SetString("username", user.username);  // Możesz także zapisać `username`
 
-                    Console.WriteLine($"User logged in: {user.username}");  // Dodajemy debugowanie, żeby sprawdzić wartość
+                    Console.WriteLine($"User logged in: {user.username}");  // Debugowanie
 
-                    return RedirectToAction("Add", "FuelData");
+                    // Po zalogowaniu przekierowujemy na dashboard
+                    return RedirectToAction("Index", "Dashboard");
                 }
                 else
                 {
@@ -38,9 +40,8 @@ namespace KalkulatorPaliwka.Controllers
                 }
             }
 
-            return View(model);  // Returning view with validation errors
+            return View(model);  // Zwracamy widok z błędami walidacji
         }
-
 
         // Log out
         public IActionResult Logout()

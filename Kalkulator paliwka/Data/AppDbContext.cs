@@ -1,4 +1,5 @@
 ﻿using KalkulatorPaliwka.Models;
+using KalkulatorPaliwka.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace KalkulatorPaliwka.Data

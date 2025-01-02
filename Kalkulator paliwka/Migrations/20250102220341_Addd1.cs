@@ -7,11 +7,29 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Kalkulator_paliwka.Migrations
 {
     /// <inheritdoc />
-    public partial class Add : Migration
+    public partial class Addd1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "FuelData",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Distance = table.Column<double>(type: "double precision", nullable: false),
+                    FuelConsumption = table.Column<double>(type: "double precision", nullable: false),
+                    FuelPrice = table.Column<double>(type: "double precision", nullable: false),
+                    TotalCost = table.Column<double>(type: "double precision", nullable: false),
+                    userid = table.Column<string>(type: "text", nullable: false),
+                    Vehicleid = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FuelData", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "UserHistories",
                 columns: table => new
@@ -51,41 +69,12 @@ namespace Kalkulator_paliwka.Migrations
                     Brand = table.Column<string>(type: "text", nullable: false),
                     Model = table.Column<string>(type: "text", nullable: false),
                     RegistrationNumber = table.Column<string>(type: "text", nullable: false),
-                    username = table.Column<string>(type: "text", nullable: false)
+                    username = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Vehicles", x => x.Id);
                 });
-
-            migrationBuilder.CreateTable(
-                name: "FuelData",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Distance = table.Column<double>(type: "double precision", nullable: false),
-                    FuelConsumption = table.Column<double>(type: "double precision", nullable: false),
-                    FuelPrice = table.Column<double>(type: "double precision", nullable: false),
-                    TotalCost = table.Column<double>(type: "double precision", nullable: false),
-                    userid = table.Column<string>(type: "text", nullable: false),
-                    VehicleId = table.Column<int>(type: "integer", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_FuelData", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_FuelData_Vehicles_VehicleId",
-                        column: x => x.VehicleId,
-                        principalTable: "Vehicles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_FuelData_VehicleId",
-                table: "FuelData",
-                column: "VehicleId");
         }
 
         /// <inheritdoc />

@@ -65,11 +65,9 @@ namespace KalkulatorPaliwka.Controllers
         // GET: Admin/AssignVehicle
         public async Task<IActionResult> AssignVehicle()
         {
-            // Fetch all users and vehicles
             var users = await _context.Users.ToListAsync();
             var vehicles = await _context.Vehicles.ToListAsync();
 
-            // Pass data to the view
             ViewData["Users"] = users;
             ViewData["Vehicles"] = vehicles;
 
@@ -81,7 +79,6 @@ namespace KalkulatorPaliwka.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AssignVehicle(string userId, int vehicleId)
         {
-            // Find the selected user
             var user = await _context.Users.FirstOrDefaultAsync(u => u.userid == userId);
             if (user == null)
             {
@@ -89,7 +86,6 @@ namespace KalkulatorPaliwka.Controllers
                 return RedirectToAction("AssignVehicle");
             }
 
-            // Find the selected vehicle
             var vehicle = await _context.Vehicles.FindAsync(vehicleId);
             if (vehicle == null)
             {
@@ -97,29 +93,28 @@ namespace KalkulatorPaliwka.Controllers
                 return RedirectToAction("AssignVehicle");
             }
 
-            // Assign the vehicle to the user
             vehicle.username = user.userid;
-
-            // Save the changes
             _context.Vehicles.Update(vehicle);
             await _context.SaveChangesAsync();
 
             return RedirectToAction("VehicleList");
         }
 
-        // GET: Admin/VehicleList
-        public async Task<IActionResult> VehicleList()
+        // GET: Wyświetlanie formularza dodawania pojazdu
+        public IActionResult AddVehicle()
         {
-            var vehicles = await _context.Vehicles.ToListAsync();
-            return View(vehicles);
+            var vehicle = new Vehicles(); // Tworzymy nowy pusty obiekt
+            return View(vehicle); // Przekazujemy pusty model do widoku
         }
 
-        // GET: Admin/AddVehicle
+        // POST: Dodawanie pojazdu
+        [HttpPost]
         public async Task<IActionResult> AddVehicle(Vehicles vehicle)
         {
+            _logger.LogInformation($"Brand: {vehicle.Brand}, Model: {vehicle.Model}, RegistrationNumber: {vehicle.RegistrationNumber}");
+
             if (!ModelState.IsValid)
             {
-                // Log specific model state errors for debugging
                 foreach (var state in ModelState)
                 {
                     foreach (var error in state.Value.Errors)
@@ -132,23 +127,17 @@ namespace KalkulatorPaliwka.Controllers
                 return View(vehicle);
             }
 
-            // Generate a random username
-            vehicle.username = GenerateRandomUsername();
-
-            // Add the vehicle to the database
             _context.Vehicles.Add(vehicle);
             await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(VehicleList));
         }
 
-        // Helper method to generate a random username
-        private string GenerateRandomUsername()
+        // Akcja, która wyświetla listę pojazdów
+        public IActionResult VehicleList()
         {
-            var random = new Random();
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-            return new string(Enumerable.Repeat(chars, 8)
-                .Select(s => s[random.Next(s.Length)]).ToArray());
+            var vehicles = _context.Vehicles.ToList();
+            return View(vehicles);
         }
 
         // GET: Admin/EditVehicle
@@ -157,7 +146,7 @@ namespace KalkulatorPaliwka.Controllers
             var vehicle = await _context.Vehicles.FindAsync(id);
             if (vehicle == null)
             {
-                return NotFound();
+                return NotFound(); // Jeśli pojazd nie istnieje, zwróć stronę 404
             }
 
             return View(vehicle);
@@ -170,33 +159,33 @@ namespace KalkulatorPaliwka.Controllers
         {
             if (id != updatedVehicle.Id)
             {
-                return BadRequest();
+                return BadRequest(); // Jeśli ID nie pasuje, zwróć błąd
             }
 
             if (!ModelState.IsValid)
             {
-                return View(updatedVehicle);
+                return View(updatedVehicle); // Jeśli walidacja nie przechodzi, zwróć formularz
             }
 
             _context.Entry(updatedVehicle).State = EntityState.Modified;
 
             try
             {
-                await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync(); // Zapisz zmiany w bazie
             }
             catch (DbUpdateConcurrencyException)
             {
                 if (!_context.Vehicles.Any(v => v.Id == id))
                 {
-                    return NotFound();
+                    return NotFound(); // Jeśli pojazd nie istnieje, zwróć stronę 404
                 }
                 else
                 {
-                    throw;
+                    throw; // Jeśli wystąpił inny błąd, rzuć wyjątek
                 }
             }
 
-            return RedirectToAction(nameof(VehicleList));
+            return RedirectToAction(nameof(VehicleList)); // Po zapisaniu przekieruj do listy pojazdów
         }
 
         // GET: Admin/DeleteVehicle
@@ -205,7 +194,7 @@ namespace KalkulatorPaliwka.Controllers
             var vehicle = await _context.Vehicles.FindAsync(id);
             if (vehicle == null)
             {
-                return NotFound();
+                return NotFound(); // Jeśli pojazd nie istnieje, zwróć stronę 404
             }
 
             return View(vehicle);
@@ -219,11 +208,11 @@ namespace KalkulatorPaliwka.Controllers
             var vehicle = await _context.Vehicles.FindAsync(id);
             if (vehicle != null)
             {
-                _context.Vehicles.Remove(vehicle);
+                _context.Vehicles.Remove(vehicle); // Usuwanie pojazdu
                 await _context.SaveChangesAsync();
             }
 
-            return RedirectToAction(nameof(AssignVehicle));
+            return RedirectToAction(nameof(VehicleList)); // Po usunięciu przekieruj do listy pojazdów
         }
     }
 }

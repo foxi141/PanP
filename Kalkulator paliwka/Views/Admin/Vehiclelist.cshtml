@@ -28,7 +28,7 @@
                     <td>@vehicle.Brand</td>
                     <td>@vehicle.Model</td>
                     <td>@vehicle.RegistrationNumber</td>
-                    <td>@vehicle.username ?? "Unassigned"</td>
+                    <td>@vehicle.username </td>
                     <td>
                         <a asp-action="EditVehicle" asp-route-id="@vehicle.Id">Edit</a> |
                         <a asp-action="DeleteVehicle" asp-route-id="@vehicle.Id">Delete</a>

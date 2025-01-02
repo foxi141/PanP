@@ -41,25 +41,33 @@ namespace KalkulatorPaliwka.Controllers
         // GET: Add fuel data
         public IActionResult Add()
         {
-            var userid = GetLoggedInuserid();  // userid from session
+            // Pobieramy userid z sesji
+            var userid = GetLoggedInuserid();  // userid z sesji
+
+            // Jeśli userid jest pusty (użytkownik nie jest zalogowany), przekierowujemy do logowania
             if (string.IsNullOrEmpty(userid))
             {
                 return RedirectToAction("Login", "Account");
             }
 
-            // Fetch vehicles for the logged-in user from the 'Vehicles' table
-            var vehicles = _context.Vehicles.Where(v => v.username == userid).ToList();  // Filter vehicles by username (userid)
+            // Pobieramy pojazdy przypisane do użytkownika na podstawie userid
+            var vehicles = _context.Vehicles.Where(v => v.username == userid).ToList();  // Filtrujemy pojazdy po username (userid)
 
-            // If no vehicles found for the user, show an appropriate message
+            // Jeśli użytkownik nie ma przypisanych pojazdów, wyświetlamy odpowiedni komunikat
             if (vehicles.Count == 0)
             {
-                TempData["Message"] = "You don't have any vehicles assigned.";
-                return View();  // Render the Add view without vehicles
+                TempData["Message"] = "Nie masz przypisanych pojazdów. Proszę dodać pojazd w sekcji pojazdów.";
+                return View();  // Renderujemy widok Add bez pojazdów
             }
 
-            // Pass vehicles to the view to allow the user to select one
+            // Przekazujemy pojazdy do widoku, aby użytkownik mógł wybrać pojazd
             ViewData["Vehicles"] = vehicles;
-            return View(new FuelData());
+
+            // Tworzymy nowy obiekt FuelData z przypisanym userid
+            var model = new FuelData { userid = userid };
+
+            // Renderujemy widok z modelem FuelData
+            return View(model);
         }
 
 
@@ -67,32 +75,50 @@ namespace KalkulatorPaliwka.Controllers
         [HttpPost]
         public async Task<IActionResult> Add(FuelData model)
         {
-            var userid = model.userid;  // Pobieramy userid z formularza (lub z sesji, jeśli pole jest puste)
+            // Pobieramy userid z sesji
+            var userid = GetLoggedInuserid();
 
+            Console.WriteLine($"Userid from session: {userid}");
+
+            // Sprawdzamy, czy userid jest pusty, jeśli tak, przekierowujemy do logowania
             if (string.IsNullOrEmpty(userid))
             {
-                userid = GetLoggedInuserid();  // Jeśli userid jest puste, pobieramy z sesji
-                if (string.IsNullOrEmpty(userid))
-                {
-                    return RedirectToAction("Login", "Account");
-                }
+                return RedirectToAction("Login", "Account");  // Jeśli userid nie jest ustawiony w sesji, przekierowujemy do logowania
             }
 
-            Console.WriteLine($"Received data: VehicleId={model.Vehicleid}, Distance={model.Distance}, FuelConsumption={model.FuelConsumption}, FuelPrice={model.FuelPrice}, userid={userid}");
+            // Przypisujemy userid do modelu przed walidacją
+            model.userid = userid;
+            Console.WriteLine($"userid set in model: {model.userid}");
 
+            // Jeśli userid nie jest ustawione w modelu, dodajemy błąd walidacji
+            if (string.IsNullOrEmpty(model.userid))
+            {
+                Console.WriteLine("Error: userid is not set in the model!");
+                ModelState.AddModelError("userid", "UserId is required.");
+            }
+
+            Console.WriteLine($"Received data: VehicleId={model.Vehicleid}, Distance={model.Distance}, FuelConsumption={model.FuelConsumption}, FuelPrice={model.FuelPrice}, userid={model.userid}");
+
+            // Przed przejściem do walidacji modelu, sprawdzamy, czy userid jest przypisane
+            if (string.IsNullOrEmpty(model.userid))
+            {
+                // Logujemy błąd jeśli userid jest puste
+                Console.WriteLine("Error: userid is missing before validation.");
+                ModelState.AddModelError("userid", "UserId is required.");
+                return View(model);
+            }
+
+            // Jeśli model jest poprawny
             if (ModelState.IsValid)
             {
-                // Validate the selected VehicleId
+                // Sprawdzamy, czy pojazd należy do użytkownika
                 var vehicle = await _context.Vehicles.FindAsync(model.Vehicleid);
-                if (vehicle == null || vehicle.username != userid)  // Sprawdzamy, czy pojazd należy do użytkownika
+                if (vehicle == null || vehicle.username != model.userid)
                 {
                     ModelState.AddModelError("Vehicleid", "Invalid vehicle selection.");
-                    ViewData["Vehicles"] = _context.Vehicles.Where(v => v.username == userid).ToList();
+                    ViewData["Vehicles"] = _context.Vehicles.Where(v => v.username == model.userid).ToList();
                     return View(model);
                 }
-
-                // Przypisujemy userid do modelu przed zapisem
-                model.userid = userid;  // Przypisujemy userid do danych paliwowych
 
                 // Obliczamy całkowity koszt
                 model.TotalCost = (model.Distance * model.FuelConsumption) / 100 * model.FuelPrice;
@@ -117,10 +143,12 @@ namespace KalkulatorPaliwka.Controllers
                 }
 
                 // Repopulujemy pojazdy w przypadku błędów walidacji
-                ViewData["Vehicles"] = _context.Vehicles.Where(v => v.username == userid).ToList();
+                ViewData["Vehicles"] = _context.Vehicles.Where(v => v.username == model.userid).ToList();
                 return View(model);
             }
         }
+
+
 
         // GET: History of fuel data
         public async Task<IActionResult> History(int? Vehicleid)
