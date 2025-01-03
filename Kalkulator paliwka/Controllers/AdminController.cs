@@ -39,7 +39,7 @@ namespace KalkulatorPaliwka.Controllers
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            return RedirectToAction(nameof(VehicleList));
+            return RedirectToAction("Index", "AdminDashboard"); // Redirects to the Admin Dashboard
         }
 
         // GET: Admin/UserFuelHistory
@@ -188,31 +188,36 @@ namespace KalkulatorPaliwka.Controllers
             return RedirectToAction(nameof(VehicleList)); // Po zapisaniu przekieruj do listy pojazdów
         }
 
-        // GET: Admin/DeleteVehicle
-        public async Task<IActionResult> DeleteVehicle(int id)
+        // GET: Admin/DeleteVehicle/{registrationNumber}
+        [HttpGet]
+        public async Task<IActionResult> DeleteVehicle(string registrationNumber)
         {
-            var vehicle = await _context.Vehicles.FindAsync(id);
+            // Find the vehicle by registration number
+            var vehicle = await _context.Vehicles.FirstOrDefaultAsync(v => v.RegistrationNumber == registrationNumber);
+
             if (vehicle == null)
             {
-                return NotFound(); // Jeśli pojazd nie istnieje, zwróć stronę 404
+                return NotFound(); // Return 404 if the vehicle is not found
             }
 
-            return View(vehicle);
+            return View("~/Views/Admin/DeleteVehicle.cshtml", vehicle); // Pass the vehicle to the view
         }
 
         // POST: Admin/DeleteVehicle
         [HttpPost, ActionName("DeleteVehicle")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteVehicleConfirmed(int id)
+        public async Task<IActionResult> DeleteVehicleConfirmed(string registrationNumber)
         {
-            var vehicle = await _context.Vehicles.FindAsync(id);
+            // Find the vehicle by registration number
+            var vehicle = await _context.Vehicles.FirstOrDefaultAsync(v => v.RegistrationNumber == registrationNumber);
+
             if (vehicle != null)
             {
-                _context.Vehicles.Remove(vehicle); // Usuwanie pojazdu
-                await _context.SaveChangesAsync();
+                _context.Vehicles.Remove(vehicle); // Remove the vehicle
+                await _context.SaveChangesAsync(); // Save changes to the database
             }
 
-            return RedirectToAction(nameof(VehicleList)); // Po usunięciu przekieruj do listy pojazdów
+            return RedirectToAction(nameof(VehicleList)); // Redirect to the vehicle list
         }
     }
 }

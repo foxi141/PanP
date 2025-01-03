@@ -1,49 +1,38 @@
 ﻿@model IEnumerable<KalkulatorPaliwka.Models.Vehicles>
 
 @{
-    ViewData["Title"] = "Vehicle List";
+    ViewData["Title"] = "Vehicle Management";
 }
 
-<h2>Vehicle List</h2>
+<h1>Vehicles</h1>
+
+<a href="/AdminDashboard/AddVehicle">Add New Vehicle</a>
 
 <table>
     <thead>
         <tr>
-            <th>#</th>
             <th>Brand</th>
             <th>Model</th>
             <th>Registration Number</th>
-            <th>Assigned User</th>
             <th>Actions</th>
         </tr>
     </thead>
     <tbody>
-        @if (Model != null && Model.Any())
-        {
-            int counter = 1;
-            foreach (var vehicle in Model)
-            {
-                <tr>
-                    <td>@counter</td>
-                    <td>@vehicle.Brand</td>
-                    <td>@vehicle.Model</td>
-                    <td>@vehicle.RegistrationNumber</td>
-                    <td>@vehicle.username </td>
-                    <td>
-                        <a asp-action="EditVehicle" asp-route-id="@vehicle.Id">Edit</a> |
-                        <a asp-action="DeleteVehicle" asp-route-id="@vehicle.Id">Delete</a>
-                    </td>
-                </tr>
-                counter++;
-            }
-        }
-        else
+        @foreach (var vehicle in Model)
         {
             <tr>
-                <td colspan="6" style="text-align:center;">No vehicles found.</td>
+                <td>@vehicle.Brand</td>
+                <td>@vehicle.Model</td>
+                <td>@vehicle.RegistrationNumber</td>
+                <td>
+                    <a asp-action="DeleteVehicle" asp-route-registrationNumber="@vehicle.RegistrationNumber" class="btn btn-danger" onclick="return confirm('Are you sure?');">Delete</a>
+                </td>
             </tr>
         }
     </tbody>
 </table>
-
-<a asp-action="AddVehicle" class="btn btn-primary">Add Vehicle</a>
+<div>
+    <a href="@Url.Action("Index", "AdminDashboard")">
+        <button type="button">Powrót </button>
+    </a>
+</div>
