@@ -52,6 +52,7 @@ namespace KalkulatorPaliwka.Controllers
 
             // Pobieramy pojazdy przypisane do użytkownika na podstawie userid
             var vehicles = _context.Vehicles.Where(v => v.username == userid).ToList();  // Filtrujemy pojazdy po username (userid)
+            ViewData["Vehicles"] = vehicles ?? new List<KalkulatorPaliwka.Models.Vehicles>(); // Ensure ViewData is initialized
 
             // Jeśli użytkownik nie ma przypisanych pojazdów, wyświetlamy odpowiedni komunikat
             if (vehicles.Count == 0)
@@ -59,9 +60,6 @@ namespace KalkulatorPaliwka.Controllers
                 TempData["Message"] = "Nie masz przypisanych pojazdów. Proszę dodać pojazd w sekcji pojazdów.";
                 return View();  // Renderujemy widok Add bez pojazdów
             }
-
-            // Przekazujemy pojazdy do widoku, aby użytkownik mógł wybrać pojazd
-            ViewData["Vehicles"] = vehicles;
 
             // Tworzymy nowy obiekt FuelData z przypisanym userid
             var model = new FuelData { userid = userid };
