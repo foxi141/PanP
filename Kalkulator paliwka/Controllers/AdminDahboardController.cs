@@ -14,9 +14,22 @@ namespace KalkulatorPaliwka.Controllers
             _context = context;
         }
 
+        // Ensure Admin is logged in
+        private IActionResult EnsureAdminLoggedIn()
+        {
+            if (HttpContext.Session.GetString("AdminLoggedIn") != "true")
+            {
+                return RedirectToAction("Login", "Admin");
+            }
+            return null;
+        }
+
         // Dashboard Overview
         public IActionResult Index()
         {
+            var redirect = EnsureAdminLoggedIn();
+            if (redirect != null) return redirect;
+
             var dashboardStats = new
             {
                 TotalUsers = _context.Users.Count(),
@@ -34,6 +47,9 @@ namespace KalkulatorPaliwka.Controllers
         // List All Users
         public IActionResult Users()
         {
+            var redirect = EnsureAdminLoggedIn();
+            if (redirect != null) return redirect;
+
             var users = _context.Users.ToList();
             return View("~/Views/Admin/Users.cshtml", users); // Explicitly specifying view path
         }
@@ -41,6 +57,9 @@ namespace KalkulatorPaliwka.Controllers
         // Add User (GET)
         public IActionResult AddUser()
         {
+            var redirect = EnsureAdminLoggedIn();
+            if (redirect != null) return redirect;
+
             return View("~/Views/Admin/AddUser.cshtml");
         }
 
@@ -48,6 +67,9 @@ namespace KalkulatorPaliwka.Controllers
         [HttpPost]
         public IActionResult AddUser(User user)
         {
+            var redirect = EnsureAdminLoggedIn();
+            if (redirect != null) return redirect;
+
             if (ModelState.IsValid)
             {
                 _context.Users.Add(user);
@@ -60,6 +82,9 @@ namespace KalkulatorPaliwka.Controllers
         // Edit User (GET)
         public IActionResult EditUser(string id)
         {
+            var redirect = EnsureAdminLoggedIn();
+            if (redirect != null) return redirect;
+
             var user = _context.Users.FirstOrDefault(u => u.userid == id);
             if (user == null)
             {
@@ -72,6 +97,9 @@ namespace KalkulatorPaliwka.Controllers
         [HttpPost]
         public IActionResult EditUser(User user)
         {
+            var redirect = EnsureAdminLoggedIn();
+            if (redirect != null) return redirect;
+
             if (ModelState.IsValid)
             {
                 _context.Users.Update(user);
@@ -84,6 +112,9 @@ namespace KalkulatorPaliwka.Controllers
         // Delete User
         public IActionResult DeleteUser(string id)
         {
+            var redirect = EnsureAdminLoggedIn();
+            if (redirect != null) return redirect;
+
             var user = _context.Users.FirstOrDefault(u => u.userid == id);
             if (user != null)
             {
@@ -96,6 +127,9 @@ namespace KalkulatorPaliwka.Controllers
         // List All Vehicles
         public IActionResult Vehicles()
         {
+            var redirect = EnsureAdminLoggedIn();
+            if (redirect != null) return redirect;
+
             var vehicles = _context.Vehicles.ToList();
             return View("~/Views/Admin/Vehicles.cshtml", vehicles);
         }
@@ -104,6 +138,9 @@ namespace KalkulatorPaliwka.Controllers
         [HttpPost]
         public IActionResult AddVehicle(Vehicles vehicle)
         {
+            var redirect = EnsureAdminLoggedIn();
+            if (redirect != null) return redirect;
+
             if (ModelState.IsValid)
             {
                 _context.Vehicles.Add(vehicle);
@@ -116,6 +153,9 @@ namespace KalkulatorPaliwka.Controllers
         // Recent User Activities
         public IActionResult Logs()
         {
+            var redirect = EnsureAdminLoggedIn();
+            if (redirect != null) return redirect;
+
             var logs = _context.UserHistories
                 .OrderByDescending(h => h.Date)
                 .ToList();

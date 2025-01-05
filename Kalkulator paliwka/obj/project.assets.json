@@ -5066,11 +5066,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\kosic\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\Kalkulator paliwka.csproj",
+      "projectUniqueName": "C:\\Users\\kosic\\OneDrive\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\Kalkulator paliwka.csproj",
       "projectName": "Kalkulator paliwka",
-      "projectPath": "C:\\Users\\kosic\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\Kalkulator paliwka.csproj",
+      "projectPath": "C:\\Users\\kosic\\OneDrive\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\Kalkulator paliwka.csproj",
       "packagesPath": "C:\\Users\\kosic\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\kosic\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\obj\\",
+      "outputPath": "C:\\Users\\kosic\\OneDrive\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\kosic\\AppData\\Roaming\\NuGet\\NuGet.Config",

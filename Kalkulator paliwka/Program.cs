@@ -56,20 +56,41 @@ app.MapControllerRoute(
     pattern: "Admin/{action=Index}/{id?}",
     defaults: new { controller = "AdminDashboard" });
 
-// Other specific routes
+// Add specific routes for Admin-related actions
 app.MapControllerRoute(
     name: "admin_user_history",
-    pattern: "Admin/UserHistory",
+    pattern: "Admin/UserHistory/{userId?}",
     defaults: new { controller = "Admin", action = "UserHistory" });
 
 app.MapControllerRoute(
     name: "admin_assign_vehicle",
-    pattern: "Admin/AssignVehiclePost",
-    defaults: new { controller = "Admin", action = "AssignVehiclePost" });
+    pattern: "Admin/AssignVehicle",
+    defaults: new { controller = "Admin", action = "AssignVehicle" });
 
-// Default route for Account/Login
+app.MapControllerRoute(
+    name: "admin_add_vehicle",
+    pattern: "Admin/AddVehicle",
+    defaults: new { controller = "Admin", action = "AddVehicle" });
+
+app.MapControllerRoute(
+    name: "admin_edit_vehicle",
+    pattern: "Admin/EditVehicle/{id?}",
+    defaults: new { controller = "Admin", action = "EditVehicle" });
+
+app.MapControllerRoute(
+    name: "admin_delete_vehicle",
+    pattern: "Admin/DeleteVehicle/{registrationNumber?}",
+    defaults: new { controller = "Admin", action = "DeleteVehicle" });
+
+// Add login-specific route
 app.MapControllerRoute(
     name: "login",
     pattern: "{controller=Account}/{action=Login}/{id?}");
+
+// Map Admin Dashboard Index
+app.MapControllerRoute(
+    name: "admin_dashboard_index",
+    pattern: "AdminDashboard",
+    defaults: new { controller = "AdminDashboard", action = "Index" });
 
 app.Run();

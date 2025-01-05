@@ -19,9 +19,52 @@ namespace KalkulatorPaliwka.Controllers
             _logger = logger;
         }
 
+        // GET: Admin/Login
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        // POST: Admin/Login
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(string username, string password)
+        {
+            var admin = await _context.Admins.FirstOrDefaultAsync(a => a.Username == username);
+
+            if (admin != null && admin.Password == password) // Compare with plain text password
+            {
+                HttpContext.Session.SetString("AdminLoggedIn", "true");
+                return RedirectToAction("Index", "AdminDashboard");
+            }
+
+            ViewData["ErrorMessage"] = "Invalid username or password.";
+            return View();
+        }
+
+        // GET: Admin/Logout
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Remove("AdminLoggedIn");
+            return RedirectToAction("Login");
+        }
+
+        // Ensure Admin is logged in
+        private IActionResult EnsureAdminLoggedIn()
+        {
+            if (HttpContext.Session.GetString("AdminLoggedIn") != "true")
+            {
+                return RedirectToAction("Login");
+            }
+            return null;
+        }
+
         // GET: Admin/AddUser
         public IActionResult AddUser()
         {
+            var redirect = EnsureAdminLoggedIn();
+            if (redirect != null) return redirect;
+
             return View(); // Form to add a user
         }
 
@@ -30,6 +73,9 @@ namespace KalkulatorPaliwka.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddUser(User user)
         {
+            var redirect = EnsureAdminLoggedIn();
+            if (redirect != null) return redirect;
+
             if (!ModelState.IsValid)
             {
                 _logger.LogWarning("Invalid user model.");
@@ -45,6 +91,9 @@ namespace KalkulatorPaliwka.Controllers
         // GET: Admin/UserFuelHistory
         public async Task<IActionResult> UserHistory(string userId)
         {
+            var redirect = EnsureAdminLoggedIn();
+            if (redirect != null) return redirect;
+
             var users = await _context.Users.ToListAsync();
             ViewData["Users"] = users;
 
@@ -65,6 +114,9 @@ namespace KalkulatorPaliwka.Controllers
         // GET: Admin/AssignVehicle
         public async Task<IActionResult> AssignVehicle()
         {
+            var redirect = EnsureAdminLoggedIn();
+            if (redirect != null) return redirect;
+
             var users = await _context.Users.ToListAsync();
             var vehicles = await _context.Vehicles.ToListAsync();
 
@@ -79,6 +131,9 @@ namespace KalkulatorPaliwka.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AssignVehicle(string userId, int vehicleId)
         {
+            var redirect = EnsureAdminLoggedIn();
+            if (redirect != null) return redirect;
+
             var user = await _context.Users.FirstOrDefaultAsync(u => u.userid == userId);
             if (user == null)
             {
@@ -103,6 +158,9 @@ namespace KalkulatorPaliwka.Controllers
         // GET: Wyświetlanie formularza dodawania pojazdu
         public IActionResult AddVehicle()
         {
+            var redirect = EnsureAdminLoggedIn();
+            if (redirect != null) return redirect;
+
             var vehicle = new Vehicles(); // Tworzymy nowy pusty obiekt
             return View(vehicle); // Przekazujemy pusty model do widoku
         }
@@ -111,6 +169,9 @@ namespace KalkulatorPaliwka.Controllers
         [HttpPost]
         public async Task<IActionResult> AddVehicle(Vehicles vehicle)
         {
+            var redirect = EnsureAdminLoggedIn();
+            if (redirect != null) return redirect;
+
             _logger.LogInformation($"Brand: {vehicle.Brand}, Model: {vehicle.Model}, RegistrationNumber: {vehicle.RegistrationNumber}");
 
             if (!ModelState.IsValid)
@@ -136,6 +197,9 @@ namespace KalkulatorPaliwka.Controllers
         // Akcja, która wyświetla listę pojazdów
         public IActionResult VehicleList()
         {
+            var redirect = EnsureAdminLoggedIn();
+            if (redirect != null) return redirect;
+
             var vehicles = _context.Vehicles.ToList();
             return View(vehicles);
         }
@@ -143,6 +207,9 @@ namespace KalkulatorPaliwka.Controllers
         // GET: Admin/EditVehicle
         public async Task<IActionResult> EditVehicle(int id)
         {
+            var redirect = EnsureAdminLoggedIn();
+            if (redirect != null) return redirect;
+
             var vehicle = await _context.Vehicles.FindAsync(id);
             if (vehicle == null)
             {
@@ -157,6 +224,9 @@ namespace KalkulatorPaliwka.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditVehicle(int id, Vehicles updatedVehicle)
         {
+            var redirect = EnsureAdminLoggedIn();
+            if (redirect != null) return redirect;
+
             if (id != updatedVehicle.Id)
             {
                 return BadRequest(); // Jeśli ID nie pasuje, zwróć błąd
@@ -192,7 +262,9 @@ namespace KalkulatorPaliwka.Controllers
         [HttpGet]
         public async Task<IActionResult> DeleteVehicle(string registrationNumber)
         {
-            // Find the vehicle by registration number
+            var redirect = EnsureAdminLoggedIn();
+            if (redirect != null) return redirect;
+
             var vehicle = await _context.Vehicles.FirstOrDefaultAsync(v => v.RegistrationNumber == registrationNumber);
 
             if (vehicle == null)
@@ -208,7 +280,9 @@ namespace KalkulatorPaliwka.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteVehicleConfirmed(string registrationNumber)
         {
-            // Find the vehicle by registration number
+            var redirect = EnsureAdminLoggedIn();
+            if (redirect != null) return redirect;
+
             var vehicle = await _context.Vehicles.FirstOrDefaultAsync(v => v.RegistrationNumber == registrationNumber);
 
             if (vehicle != null)

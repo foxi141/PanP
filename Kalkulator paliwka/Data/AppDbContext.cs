@@ -16,6 +16,7 @@ namespace KalkulatorPaliwka.Data
 
         public DbSet<Vehicles> Vehicles { get; set; }
         public DbSet<UserHistory> UserHistories { get; set; }
+        public DbSet<Admin> Admins { get; set; }
     }
 }
 

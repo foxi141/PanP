@@ -2,7 +2,9 @@
 
 @{
     var vehicles = ViewData["Vehicles"] as List<KalkulatorPaliwka.Models.Vehicles>;
-    var userid = Model.userid;  // Pobieramy userid z modelu
+    var userid = Model?.userid?.ToString() ?? "default-value";
+
+
 }
 
 <!DOCTYPE html>

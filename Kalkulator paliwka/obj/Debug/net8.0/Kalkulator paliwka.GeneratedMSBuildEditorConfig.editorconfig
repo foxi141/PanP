@@ -17,111 +17,115 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Kalkulator_paliwka
 build_property.RootNamespace = Kalkulator_paliwka
-build_property.ProjectDir = C:\Users\kosic\Documents\GitHub\PanP\Kalkulator paliwka\
+build_property.ProjectDir = C:\Users\kosic\OneDrive\Documents\GitHub\PanP\Kalkulator paliwka\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\kosic\Documents\GitHub\PanP\Kalkulator paliwka
+build_property.MSBuildProjectDirectory = C:\Users\kosic\OneDrive\Documents\GitHub\PanP\Kalkulator paliwka
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/kosic/Documents/GitHub/PanP/Kalkulator paliwka/Views/Account/Login.cshtml]
+[C:/Users/kosic/OneDrive/Documents/GitHub/PanP/Kalkulator paliwka/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kosic/Documents/GitHub/PanP/Kalkulator paliwka/Views/Admin/AddUser.cshtml]
+[C:/Users/kosic/OneDrive/Documents/GitHub/PanP/Kalkulator paliwka/Views/Admin/AddUser.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRkVXNlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kosic/Documents/GitHub/PanP/Kalkulator paliwka/Views/Admin/AddVehicle.cshtml]
+[C:/Users/kosic/OneDrive/Documents/GitHub/PanP/Kalkulator paliwka/Views/Admin/AddVehicle.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRkVmVoaWNsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kosic/Documents/GitHub/PanP/Kalkulator paliwka/Views/Admin/AssignVehicle.cshtml]
+[C:/Users/kosic/OneDrive/Documents/GitHub/PanP/Kalkulator paliwka/Views/Admin/AssignVehicle.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQXNzaWduVmVoaWNsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kosic/Documents/GitHub/PanP/Kalkulator paliwka/Views/Admin/DeleteVehicle.cshtml]
+[C:/Users/kosic/OneDrive/Documents/GitHub/PanP/Kalkulator paliwka/Views/Admin/DeleteVehicle.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRGVsZXRlVmVoaWNsZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kosic/Documents/GitHub/PanP/Kalkulator paliwka/Views/Admin/EditUser.cshtml]
+[C:/Users/kosic/OneDrive/Documents/GitHub/PanP/Kalkulator paliwka/Views/Admin/EditUser.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRWRpdFVzZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kosic/Documents/GitHub/PanP/Kalkulator paliwka/Views/Admin/Index.cshtml]
+[C:/Users/kosic/OneDrive/Documents/GitHub/PanP/Kalkulator paliwka/Views/Admin/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kosic/Documents/GitHub/PanP/Kalkulator paliwka/Views/Admin/Logs.cshtml]
+[C:/Users/kosic/OneDrive/Documents/GitHub/PanP/Kalkulator paliwka/Views/Admin/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/kosic/OneDrive/Documents/GitHub/PanP/Kalkulator paliwka/Views/Admin/Logs.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTG9ncy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kosic/Documents/GitHub/PanP/Kalkulator paliwka/Views/Admin/UserHistory.cshtml]
+[C:/Users/kosic/OneDrive/Documents/GitHub/PanP/Kalkulator paliwka/Views/Admin/UserHistory.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVXNlckhpc3RvcnkuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kosic/Documents/GitHub/PanP/Kalkulator paliwka/Views/Admin/Users.cshtml]
+[C:/Users/kosic/OneDrive/Documents/GitHub/PanP/Kalkulator paliwka/Views/Admin/Users.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVXNlcnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kosic/Documents/GitHub/PanP/Kalkulator paliwka/Views/Admin/Vehiclelist.cshtml]
+[C:/Users/kosic/OneDrive/Documents/GitHub/PanP/Kalkulator paliwka/Views/Admin/Vehiclelist.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVmVoaWNsZWxpc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kosic/Documents/GitHub/PanP/Kalkulator paliwka/Views/Dashboard/Index.cshtml]
+[C:/Users/kosic/OneDrive/Documents/GitHub/PanP/Kalkulator paliwka/Views/Dashboard/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGFzaGJvYXJkXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kosic/Documents/GitHub/PanP/Kalkulator paliwka/Views/FuelConsumption/Index.cshtml]
+[C:/Users/kosic/OneDrive/Documents/GitHub/PanP/Kalkulator paliwka/Views/FuelConsumption/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRnVlbENvbnN1bXB0aW9uXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kosic/Documents/GitHub/PanP/Kalkulator paliwka/Views/FuelData/Add.cshtml]
+[C:/Users/kosic/OneDrive/Documents/GitHub/PanP/Kalkulator paliwka/Views/FuelData/Add.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRnVlbERhdGFcQWRkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kosic/Documents/GitHub/PanP/Kalkulator paliwka/Views/FuelData/AssignedCarsFuelConsumption.cshtml]
+[C:/Users/kosic/OneDrive/Documents/GitHub/PanP/Kalkulator paliwka/Views/FuelData/AssignedCarsFuelConsumption.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRnVlbERhdGFcQXNzaWduZWRDYXJzRnVlbENvbnN1bXB0aW9uLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kosic/Documents/GitHub/PanP/Kalkulator paliwka/Views/FuelData/History.cshtml]
+[C:/Users/kosic/OneDrive/Documents/GitHub/PanP/Kalkulator paliwka/Views/FuelData/History.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRnVlbERhdGFcSGlzdG9yeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kosic/Documents/GitHub/PanP/Kalkulator paliwka/Views/FuelData/Index.cshtml]
+[C:/Users/kosic/OneDrive/Documents/GitHub/PanP/Kalkulator paliwka/Views/FuelData/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRnVlbERhdGFcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kosic/Documents/GitHub/PanP/Kalkulator paliwka/Views/Home/Index.cshtml]
+[C:/Users/kosic/OneDrive/Documents/GitHub/PanP/Kalkulator paliwka/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kosic/Documents/GitHub/PanP/Kalkulator paliwka/Views/Home/Privacy.cshtml]
+[C:/Users/kosic/OneDrive/Documents/GitHub/PanP/Kalkulator paliwka/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kosic/Documents/GitHub/PanP/Kalkulator paliwka/Views/Shared/Error.cshtml]
+[C:/Users/kosic/OneDrive/Documents/GitHub/PanP/Kalkulator paliwka/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kosic/Documents/GitHub/PanP/Kalkulator paliwka/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/kosic/OneDrive/Documents/GitHub/PanP/Kalkulator paliwka/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kosic/Documents/GitHub/PanP/Kalkulator paliwka/Views/_ViewImports.cshtml]
+[C:/Users/kosic/OneDrive/Documents/GitHub/PanP/Kalkulator paliwka/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kosic/Documents/GitHub/PanP/Kalkulator paliwka/Views/_ViewStart.cshtml]
+[C:/Users/kosic/OneDrive/Documents/GitHub/PanP/Kalkulator paliwka/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/kosic/Documents/GitHub/PanP/Kalkulator paliwka/Views/Shared/_Layout.cshtml]
+[C:/Users/kosic/OneDrive/Documents/GitHub/PanP/Kalkulator paliwka/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-1yb55b5nxh
 
-[C:/Users/kosic/Documents/GitHub/PanP/Kalkulator paliwka/Views/Shared/_Layoutnotlogged.cshtml]
+[C:/Users/kosic/OneDrive/Documents/GitHub/PanP/Kalkulator paliwka/Views/Shared/_Layoutnotlogged.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRub3Rsb2dnZWQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-2ci8djyxsq

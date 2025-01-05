@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Kalkulator_paliwka.Migrations
 {
     /// <inheritdoc />
-    public partial class Addd1 : Migration
+    public partial class Add2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
