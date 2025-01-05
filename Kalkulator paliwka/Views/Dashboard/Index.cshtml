@@ -46,6 +46,25 @@
                 .dashboard-option a:hover {
                     background-color: #45a049;
                 }
+
+        .logout-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .logout-button {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+            .logout-button:hover {
+                background-color: #e53935;
+            }
     </style>
 </head>
 <body>
@@ -69,5 +88,13 @@
         </div>
     </div>
 
+    <div class="logout-container">
+        <!-- Logout Button -->
+        <form method="post" asp-controller="Account" asp-action="Logout">
+            <button type="submit" class="logout-button">Wyloguj</button>
+        </form>
+    </div>
+
 </body>
 </html>
+

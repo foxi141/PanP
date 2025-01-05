@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Kalkulator paliwka")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e4d60a3ac14a4f7194c47090b6903a9123e95b8b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+32b3aac7d9b485a5f03ad172f968eb6e00ec4472")]
 [assembly: System.Reflection.AssemblyProductAttribute("Kalkulator paliwka")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Kalkulator paliwka")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
