@@ -4,10 +4,10 @@
     ViewData["Title"] = "Admin Dashboard";
 }
 
-<h1>Admin Dashboard</h1>
+<h1>Panel Admina</h1>
 
 <div>
-    <h3>Statistics</h3>
+    <h3>Statystyki </h3>
     <ul>
         <li>Total Users: @Model.TotalUsers</li>
         <li>Total Vehicles: @Model.TotalVehicles</li>
@@ -15,45 +15,23 @@
     </ul>
 </div>
 
-<div>
-    <h3>Recent Activities</h3>
-    <table>
-        <thead>
-            <tr>
-                <th>Username</th>
-                <th>Date</th>
-                <th>Fuel Consumption</th>
-                <th>Total Cost</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var activity in Model.RecentActivities)
-            {
-                <tr>
-                    <td>@activity.username</td>
-                    <td>@activity.Date.ToShortDateString()</td>
-                    <td>@activity.FuelConsumption L</td>
-                    <td>@activity.TotalCost $</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>
+
 
 <div>
-    <h3>Actions</h3>
+    <h3>Funkcje</h3>
     <ul>
-        <li><a href="/Admin/AssignVehicle">Assign Vehicle</a></li>
-        <li><a href="/Admin/AddVehicle">Add Vehicle</a></li>
-        <li><a href="/Admin/VehicleList">View Vehicles</a></li>
-        <li><a href="/Admin/UserHistory">User Fuel History</a></li>
-        <li><a href="/Admin/AddUser">Add User</a></li>
+        <li><a href="/Admin/AssignVehicle">Przypisz Pojazd</a></li>
+        <li><a href="/Admin/AddVehicle">Dodaj Pojazd</a></li>
+        <li><a href="/Admin/VehicleList">Pojazdy</a></li>
+        <li><a href="/Admin/UserHistory">Historia danych uzytkownikow</a></li>
+        <li><a href="/Admin/AddUser">Dodaj uzytkownika</a></li>
+        <li><a href="/Admin/Users">Lista Uzytkownikow</a></li>
     </ul>
 </div>
 
 <div>
     <!-- Logout button -->
     <form method="post" asp-controller="Admin" asp-action="Logout">
-        <button type="submit" class="btn btn-danger">Logout</button>
+        <button type="submit" class="btn btn-danger">Wyloguj</button>
     </form>
 </div>
