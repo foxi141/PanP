@@ -1,36 +1,54 @@
 ﻿@model KalkulatorPaliwka.Models.User
 
 @{
-    ViewData["Title"] = "Dodaj Użytkownika";
+    ViewData["Title"] = "Dodaj użytkownika";
 }
 
-<h2>@ViewData["Title"]</h2>
+<h2>Dodaj użytkownika</h2>
 
-<form asp-action="AddUser" method="post">
-    <div class="form-group">
-        <label for="userid">ID użytkownika</label>
-        <input type="text" class="form-control" id="userid" name="userid" required />
+@if (TempData["Message"] != null)
+
+{
+    <div class="alert alert-success">@TempData["Message"]</div>
+}
+
+<form asp-action="AddUser" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label asp-for="userid" class="form-label"></label>
+        <input asp-for="userid" class="form-control" />
+        <span asp-validation-for="userid" class="text-danger"></span>
     </div>
 
-    <div class="form-group">
-        <label for="username">Nazwa użytkownika</label>
-        <input type="text" class="form-control" id="username" name="username" required />
+    <div class="mb-3">
+        <label asp-for="username" class="form-label"></label>
+        <input asp-for="username" class="form-control" />
+        <span asp-validation-for="username" class="text-danger"></span>
     </div>
 
-    <div class="form-group">
-        <label for="email">Adres e-mail</label>
-        <input type="email" class="form-control" id="email" name="email" required />
+    <div class="mb-3">
+        <label asp-for="email" class="form-label"></label>
+        <input asp-for="email" class="form-control" />
+        <span asp-validation-for="email" class="text-danger"></span>
     </div>
 
-    <div class="form-group">
-        <label for="passwordhash">Hasło</label>
-        <input type="password" class="form-control" id="passwordhash" name="passwordhash" required />
+    <div class="mb-3">
+        <label asp-for="passwordhash" class="form-label"></label>
+        <input asp-for="passwordhash" type="password" class="form-control" />
+        <span asp-validation-for="passwordhash" class="text-danger"></span>
     </div>
 
-    <button type="submit" class="btn btn-primary">Dodaj użytkownika</button>
+    <div class="mb-3">
+        <label for="avatar">Avatar (opcjonalny)</label>
+        <input type="file" name="avatar" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-success">Dodaj użytkownika</button>
 </form>
-<div>
-    <a href="@Url.Action("Index", "AdminDashboard")">
-        <button type="button">Powrót </button>
-    </a>
-</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

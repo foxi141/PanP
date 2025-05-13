@@ -1,0 +1,20 @@
+﻿@{
+    ViewData["Title"] = "Usuń użytkownika";
+    var users = ViewBag.Users as List<SelectListItem>;
+}
+
+<h2 class="mb-3">Usuń użytkownika</h2>
+
+<form asp-action="DeleteUser" method="post">
+    <div class="form-group mb-3">
+        <label for="userid">Wybierz użytkownika:</label>
+        <select name="userid" class="form-control" required>
+            <option value="">-- wybierz --</option>
+            @foreach (var user in users)
+            {
+                <option value="@user.Value">@user.Text</option>
+            }
+        </select>
+    </div>
+    <button type="submit" class="btn btn-danger" onclick="return confirm('Na pewno usunąć użytkownika?');">Usuń</button>
+</form>

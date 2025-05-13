@@ -1,27 +1,33 @@
-﻿@model KalkulatorPaliwka.Models.Vehicles
+@{
+    ViewData["Title"] = "Dodaj pojazd";
+}
 
-<h1>Dodaj pojazd</h1>
+<h2 class="mb-3">Dodaj nowy pojazd</h2>
 
-<form method="post">
-    <div>
-        <label for="Brand">Marka</label>
-        <input type="text" id="Brand" name="Brand" value="@Model.Brand" required />
-    </div>
-
-    <div>
-        <label for="Model">Model</label>
-        <input type="text" id="Model" name="Model" value="@Model.Model" required />
-    </div>
-
-    <div>
+<form asp-action="AddVehicle" method="post" enctype="multipart/form-data">
+    <div class="mb-2">
         <label for="RegistrationNumber">Numer rejestracyjny</label>
-        <input type="text" id="RegistrationNumber" name="RegistrationNumber" value="@Model.RegistrationNumber" required />
+        <input type="text" name="RegistrationNumber" class="form-control" required />
     </div>
-
-    <button type="submit">Dodaj pojazd</button>
+    <div class="mb-2">
+        <label for="Brand">Marka</label>
+        <input type="text" name="Brand" class="form-control" required />
+    </div>
+    <div class="mb-2">
+        <label for="Model">Model</label>
+        <input type="text" name="Model" class="form-control" required />
+    </div>
+    <div class="mb-2">
+        <label for="FuelType">Rodzaj paliwa</label>
+        <input type="text" name="FuelType" class="form-control" required />
+    </div>
+    <div class="mb-2">
+        <label for="Mileage">Przebieg</label>
+        <input type="number" name="Mileage" class="form-control" required />
+    </div>
+    <div class="mb-3">
+        <label for="Photo">Zdjęcie pojazdu (opcjonalnie)</label>
+        <input type="file" name="Photo" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-success">Dodaj pojazd</button>
 </form>
-<div>
-    <a href="@Url.Action("Index", "AdminDashboard")">
-        <button type="button">Powrót </button>
-    </a>
-</div>

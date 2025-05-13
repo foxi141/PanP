@@ -1,46 +1,37 @@
-﻿@{
-    ViewData["Title"] = "Assign Vehicle to User";
-    var users = ViewData["Users"] as IEnumerable<KalkulatorPaliwka.Models.User>;
-    var vehicles = ViewData["Vehicles"] as IEnumerable<KalkulatorPaliwka.Models.Vehicles>;
+@{
+    ViewData["Title"] = "Przypisz pojazd do użytkownika";
 }
 
-<h2>Assign Vehicle to User</h2>
+<h2 class="mb-4">Przypisz pojazd</h2>
 
-<form method="post" asp-action="AssignVehicle">
-    <div>
-        <label for="userId">Select User:</label>
-        <select id="userId" name="userId" required>
-            <option value="">-- Select User --</option>
-            @if (users != null)
+@if (TempData["Message"] != null)
+
+{
+    <div class="alert alert-success">@TempData["Message"]</div>
+}
+
+<form asp-action="AssignVehicle" method="post">
+    <div class="form-group mb-3">
+        <label for="UserId">Użytkownik:</label>
+        <select name="UserId" class="form-control" required>
+            <option value="">-- wybierz użytkownika --</option>
+            @foreach (var user in ViewBag.Users as List<SelectListItem>)
             {
-                foreach (var user in users)
-                {
-                    <option value="@user.userid">@user.username</option>
-                }
+                <option value="@user.Value">@user.Text</option>
             }
         </select>
     </div>
 
-    <div>
-        <label for="vehicleId">Select Vehicle:</label>
-        <select id="vehicleId" name="vehicleId" required>
-            <option value="">-- Select Vehicle --</option>
-            @if (vehicles != null)
+    <div class="form-group mb-3">
+        <label for="VehicleId">Pojazd:</label>
+        <select name="VehicleId" class="form-control" required>
+            <option value="">-- wybierz pojazd --</option>
+            @foreach (var vehicle in ViewBag.Vehicles as List<SelectListItem>)
             {
-                foreach (var vehicle in vehicles)
-                {
-                    <option value="@vehicle.Id">
-                        @vehicle.Brand @vehicle.Model (@vehicle.RegistrationNumber)
-                    </option>
-                }
+                <option value="@vehicle.Value">@vehicle.Text</option>
             }
         </select>
     </div>
 
-    <button type="submit">Assign</button>
+    <button type="submit" class="btn btn-primary">Przypisz pojazd</button>
 </form>
-<div>
-    <a href="@Url.Action("Index", "AdminDashboard")">
-        <button type="button">Powrót </button>
-    </a>
-</div>

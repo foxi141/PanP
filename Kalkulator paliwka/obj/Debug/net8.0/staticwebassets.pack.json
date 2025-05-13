@@ -17,8 +17,28 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\kosic\\OneDrive\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\wwwroot\\images\\20210120_180458.jpg",
+      "PackagePath": "staticwebassets\\images\\20210120_180458.jpg"
+    },
+    {
+      "Id": "C:\\Users\\kosic\\OneDrive\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\wwwroot\\images\\20230811_225916.jpg",
+      "PackagePath": "staticwebassets\\images\\20230811_225916.jpg"
+    },
+    {
+      "Id": "C:\\Users\\kosic\\OneDrive\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\wwwroot\\images\\STRONA 3.png",
+      "PackagePath": "staticwebassets\\images\\STRONA 3.png"
+    },
+    {
+      "Id": "C:\\Users\\kosic\\OneDrive\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\wwwroot\\images\\images.png",
+      "PackagePath": "staticwebassets\\images\\images.png"
+    },
+    {
       "Id": "C:\\Users\\kosic\\OneDrive\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\wwwroot\\images\\logo.png",
       "PackagePath": "staticwebassets\\images\\logo.png"
+    },
+    {
+      "Id": "C:\\Users\\kosic\\OneDrive\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\wwwroot\\images\\wallpaperflare.com_wallpaper.jpg",
+      "PackagePath": "staticwebassets\\images\\wallpaperflare.com_wallpaper.jpg"
     },
     {
       "Id": "C:\\Users\\kosic\\OneDrive\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\wwwroot\\js\\site.js",

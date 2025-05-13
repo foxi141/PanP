@@ -16,5 +16,5 @@ public class Vehicles
 
     public string ?username { get; set; } // Zmienione na Username
 
-    
+    public string photopath { get; set; }
 }

@@ -1,100 +1,38 @@
-﻿@{
-    ViewData["Title"] = "Dashboard";
+@{
+    ViewData["Title"] = "Panel Użytkownika";
+
+    var avatarPath = Context.Session.GetString("avatar") ?? "/images/avatar.png";
+
+    var username = Context.Session.GetString("username") ?? "Użytkownik";
 }
 
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewData["Title"]</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-
-        h1 {
-            color: #4CAF50;
-        }
-
-        .dashboard-container {
-            display: flex;
-            justify-content: center;
-            margin-top: 50px;
-        }
-
-        .dashboard-option {
-            background-color: #f4f4f4;
-            padding: 20px;
-            margin: 0 20px;
-            border-radius: 8px;
-            text-align: center;
-            width: 200px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-            .dashboard-option a {
-                text-decoration: none;
-                color: white;
-                background-color: #4CAF50;
-                padding: 10px 20px;
-                border-radius: 4px;
-                font-size: 16px;
-            }
-
-                .dashboard-option a:hover {
-                    background-color: #45a049;
-                }
-
-        .logout-container {
-            text-align: center;
-            margin-top: 30px;
-        }
-
-        .logout-button {
-            background-color: #f44336;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-            .logout-button:hover {
-                background-color: #e53935;
-            }
-    </style>
-</head>
-<body>
-
-    <h1>Witaj na swoim Dashboardzie!</h1>
-    <p>Wybierz jedną z poniższych opcji:</p>
-
-    <div class="dashboard-container">
-        <!-- Opcja 1: Dodaj dane paliwowe -->
-        <div class="dashboard-option">
-            <h3>Dodaj dane paliwowe</h3>
-            <p>Chcesz dodać nowe dane dotyczące paliwa?</p>
-            <a href="@Url.Action("AddFuelData", "Dashboard")">Dodaj dane</a>
-        </div>
-
-        <!-- Opcja 2: Historia danych paliwowych -->
-        <div class="dashboard-option">
-            <h3>Przeglądaj historię</h3>
-            <p>Chcesz zobaczyć swoją historię danych paliwowych?</p>
-            <a href="@Url.Action("FuelHistory", "Dashboard")">Zobacz historię</a>
-        </div>
+<div class="container mt-4">
+    <div class="text-center mb-4">
+        <img src="@avatarPath" class="rounded-circle shadow" width="100" height="100" />
+        <h3 class="mt-2">Witaj, @username</h3>
     </div>
 
-    <div class="logout-container">
-        <!-- Logout Button -->
-        <form method="post" asp-controller="Account" asp-action="Logout">
-            <button type="submit" class="logout-button">Wyloguj</button>
-        </form>
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+
+        <div class="col">
+            <div class="card shadow-sm h-100">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Historia tankowań</h5>
+                    <p class="card-text">Zobacz historię zużycia paliwa dla Twoich pojazdów.</p>
+                    <a href="/FuelData/History" class="btn btn-primary">Historia</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card shadow-sm h-100">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Dodaj tankowanie</h5>
+                    <p class="card-text">Dodaj nowe zużycie paliwa do systemu.</p>
+                    <a href="/FuelData/Add" class="btn btn-success">Dodaj</a>
+                </div>
+            </div>
+        </div>
+
     </div>
-
-</body>
-</html>
-
+</div>
