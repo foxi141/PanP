@@ -35,6 +35,7 @@ namespace KalkulatorPaliwka.Controllers
                 {
                     HttpContext.Session.SetString("userid", user.userid);
                     HttpContext.Session.SetString("username", user.username);
+                    HttpContext.Session.SetString("avatar", user.avatarpath ?? "/images/avatar.png");
                     return RedirectToAction("Index", "Dashboard");
                 }
 

@@ -15,4 +15,6 @@ public class User
 
     public string userid { get; set; }
     public DateTime createdat { get; set; }
+
+    public string avatarpath { get; set; } = "/images/avatar.png";
 }

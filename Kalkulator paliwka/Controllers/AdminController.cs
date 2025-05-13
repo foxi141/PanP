@@ -37,7 +37,8 @@ namespace KalkulatorPaliwka.Controllers
             if (admin != null)
             {
                 HttpContext.Session.SetString("adminid", admin.Id.ToString());
-                return RedirectToAction("Users");
+                HttpContext.Session.SetString("avatar", "/images/avatar.png");
+                return RedirectToAction("Index", "AdminDashboard");
             }
 
             ModelState.AddModelError("", "Nieprawidłowy login lub hasło.");

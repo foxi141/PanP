@@ -48,7 +48,7 @@ app.UseAuthorization();
 // Configure routes and map controllers
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Account}/{action=Login}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 // Add routing for AdminDashboardController
 app.MapControllerRoute(
@@ -85,7 +85,7 @@ app.MapControllerRoute(
 // Add login-specific route
 app.MapControllerRoute(
     name: "login",
-    pattern: "{controller=Account}/{action=Login}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 // Map Admin Dashboard Index
 app.MapControllerRoute(

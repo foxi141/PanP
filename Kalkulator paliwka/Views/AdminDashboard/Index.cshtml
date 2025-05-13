@@ -1,0 +1,70 @@
+@{
+    ViewData["Title"] = "Panel Administratora";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4 text-center">Panel Administratora PRDM S.A.</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+
+        <div class="col">
+            <div class="card shadow-sm h-100">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Użytkownicy</h5>
+                    <p class="card-text">Zarządzaj kontami użytkowników.</p>
+                    <a href="/Admin/Users" class="btn btn-danger">Przeglądaj</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card shadow-sm h-100">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Historia użytkowników</h5>
+                    <p class="card-text">Zobacz działania poszczególnych użytkowników.</p>
+                    <a href="/Admin/UserHistory" class="btn btn-danger">Historia</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card shadow-sm h-100">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Dodaj pojazd</h5>
+                    <p class="card-text">Dodaj nowy pojazd do systemu.</p>
+                    <a href="/Admin/AddVehicle" class="btn btn-danger">Dodaj</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card shadow-sm h-100">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Przypisz pojazd</h5>
+                    <p class="card-text">Przypisz pojazd konkretnemu użytkownikowi.</p>
+                    <a href="/Admin/AssignVehicle" class="btn btn-danger">Przypisz</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card shadow-sm h-100">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Edytuj pojazd</h5>
+                    <p class="card-text">Zaktualizuj dane istniejącego pojazdu.</p>
+                    <a href="/Admin/EditVehicle" class="btn btn-danger">Edytuj</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card shadow-sm h-100">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Usuń pojazd</h5>
+                    <p class="card-text">Usuń pojazd z systemu.</p>
+                    <a href="/Admin/DeleteVehicle" class="btn btn-danger">Usuń</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
