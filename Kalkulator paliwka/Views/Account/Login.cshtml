@@ -3,9 +3,6 @@
 @{
     ViewData["Title"] = "Login";
 }
-
-<h2>Login</h2>
-
 <!-- Wyświetlanie błędów walidacji, jeśli są -->
 @if (!string.IsNullOrEmpty(ViewData["ErrorMessage"] as string))
 {
@@ -14,7 +11,7 @@
     </div>
 }
 
-<form method="post" asp-action="Login">
+<form class="login-model" method="post" asp-action="Login">
     <div>
         <label for="Username">Username</label>
         <input type="text" id="Username" name="username" value="@Model.username" />
@@ -24,16 +21,13 @@
         <input type="password" id="Password" name="passwordhash" value="@Model.passwordhash" />
     </div>
     
-    <!-- Wyświetlanie błędów z ModelState -->
-    @if (!ViewData.ModelState.IsValid)
-    {
-        <div style="color: red;">
-            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
-            {
-                <p>@error.ErrorMessage</p>
-            }
-        </div>
-    }
-
+   
     <button type="submit">Login</button>
 </form>
+<style>
+    .login-model{
+        display:flex;
+        flex-direction:column;
+        color:white;
+    }
+</style>

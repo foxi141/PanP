@@ -18,6 +18,8 @@
         <nav >
             <img src="https://i.ytimg.com/vi/kIPFzrgh2T8/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAkBji1--BRGCjZlust3elI20Qpyw" style="height:50px; width:50px;"  />
         </nav>
+        <h1>PRDM SA</h1>
+        <b style="margin:10px;">oficjalny kalkulator paliwa</b>
     </header>
     <div class="container">
         
@@ -26,7 +28,7 @@
     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
+        <div class="footer">
             &copy; 2024 - Kalkulator_paliwka - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
@@ -36,3 +38,24 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+<style>
+    .container{
+       display:flex;
+       justify-content:center;
+       align-items:center;
+       min-height:900px;
+       
+    } 
+     .footer{
+        margin-top:auto;
+        height:100px;
+    }
+  header{
+      background:orange;
+      display:flex;
+      flex-direction:row
+  }
+  body{
+        background: #3a3a3a;
+    }
+</style>
