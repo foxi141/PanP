@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using KalkulatorPaliwka.Data;
 using KalkulatorPaliwka.Models;
 using System.Linq;
-using Microsoft.AspNetCore.Http;
 
 namespace KalkulatorPaliwka.Controllers
 {
@@ -15,7 +15,15 @@ namespace KalkulatorPaliwka.Controllers
             _context = context;
         }
 
-        // GET: Login page
+        // GET: /Account/Login
+        public IActionResult Login()
+        {
+            return View(new LoginViewModel());
+        }
+
+        // POST: /Account/Login
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Login(LoginViewModel model)
         {
             if (ModelState.IsValid)
@@ -25,29 +33,22 @@ namespace KalkulatorPaliwka.Controllers
 
                 if (user != null)
                 {
-                    // Ustawiamy userid w sesji
-                    HttpContext.Session.SetString("userid", user.userid);  // Zapisujemy `userid` w sesji
-                    HttpContext.Session.SetString("username", user.username);  // Możesz także zapisać `username`
-
-                    Console.WriteLine($"User logged in: {user.username}");  // Debugowanie
-
-                    // Po zalogowaniu przekierowujemy na dashboard
+                    HttpContext.Session.SetString("userid", user.userid);
+                    HttpContext.Session.SetString("username", user.username);
                     return RedirectToAction("Index", "Dashboard");
                 }
-                else
-                {
-                    ModelState.AddModelError(string.Empty, "Invalid username or password.");
-                }
+
+                ModelState.AddModelError("", "Nieprawidłowy login lub hasło.");
             }
 
-            return View(model);  // Zwracamy widok z błędami walidacji
+            return View(model);
         }
 
-        // Log out
+        [HttpPost]
         public IActionResult Logout()
         {
-            HttpContext.Session.Clear();  // Usunięcie sesji
-            return RedirectToAction("Login");  // Po wylogowaniu przekierowanie na stronę logowania
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Home");
         }
     }
 }

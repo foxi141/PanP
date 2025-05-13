@@ -1,9 +1,9 @@
-﻿@model KalkulatorPaliwka.Models.LoginViewModel
+@model KalkulatorPaliwka.Models.LoginViewModel
 
 @{
     ViewData["Title"] = "Login";
 }
-<!-- Wyświetlanie błędów walidacji, jeśli są -->
+
 @if (!string.IsNullOrEmpty(ViewData["ErrorMessage"] as string))
 {
     <div style="color: red;">
@@ -14,20 +14,38 @@
 <form class="login-model" method="post" asp-action="Login">
     <div>
         <label for="Username">Username</label>
-        <input type="text" id="Username" name="username" value="@Model.username" />
+        <input type="text" id="Username" name="username" value="@Model?.username" />
     </div>
     <div>
         <label for="Password">Password</label>
-        <input type="password" id="Password" name="passwordhash" value="@Model.passwordhash" />
+        <input type="password" id="Password" name="passwordhash" value="@Model?.passwordhash" />
     </div>
-    
-   
     <button type="submit">Login</button>
 </form>
+
 <style>
-    .login-model{
-        display:flex;
-        flex-direction:column;
-        color:white;
+    .login-model {
+        display: flex;
+        flex-direction: column;
+        color: white;
+        gap: 10px;
+        max-width: 300px;
+        margin: 50px auto;
+    }
+
+    .login-model input, .login-model button {
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    .login-model button {
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    .login-model button:hover {
+        background-color: #bb2d3b;
     }
 </style>

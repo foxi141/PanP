@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "NmeNEzHV9t7OI9MiBo9v6Vc2rZVtDhMIZphU7dgMXr0=",
+  "Hash": "EGKOlrs7FeKTEzKpMYtMuOzWO4OFA19yNQujWNzBPe0=",
   "Source": "Kalkulator paliwka",
   "BasePath": "_content/Kalkulator paliwka",
   "Mode": "Default",
@@ -110,6 +110,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\kosic\\OneDrive\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\wwwroot\\images\\logo.png",
+      "SourceId": "Kalkulator paliwka",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\kosic\\OneDrive\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\wwwroot\\",
+      "BasePath": "_content/Kalkulator paliwka",
+      "RelativePath": "images/logo.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\logo.png"
     },
     {
       "Identity": "C:\\Users\\kosic\\OneDrive\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\wwwroot\\js\\site.js",
