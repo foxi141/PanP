@@ -8,6 +8,7 @@ using KalkulatorPaliwka.Models;
 using System.Linq;
 using System.Threading.Tasks;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace KalkulatorPaliwka.Controllers
 {
@@ -65,12 +66,7 @@ namespace KalkulatorPaliwka.Controllers
 
       
 
-        [HttpGet]
-        public IActionResult EditUser()
-        {
-            if (!IsAdmin()) return RedirectToAction("Login");
-            return View();
-        }
+        
 
         [HttpGet]
         public IActionResult AddVehicle()
@@ -81,45 +77,89 @@ namespace KalkulatorPaliwka.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddVehicle(IFormFile Photo, string RegistrationNumber, string Brand, string Model, string username)
+        public async Task<IActionResult> AddVehicle(Vehicles vehicle, string croppedPhoto)
         {
             if (!IsAdmin()) return RedirectToAction("Login");
 
-            string photoPath = "/images/default_car.png";
-            if (Photo != null && Photo.Length > 0)
+            Console.WriteLine("🔧 Rozpoczęto dodawanie pojazdu...");
+            Console.WriteLine($"➡ Brand: {vehicle.Brand}");
+            Console.WriteLine($"➡ Model: {vehicle.Model}");
+            Console.WriteLine($"➡ Registration: {vehicle.RegistrationNumber}");
+            Console.WriteLine($"➡ CroppedPhoto present: {!string.IsNullOrEmpty(croppedPhoto)}");
+
+            if (!ModelState.IsValid)
             {
-                var fileName = Path.GetFileName(Photo.FileName);
-                var savePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", fileName);
-                using (var stream = new FileStream(savePath, FileMode.Create))
+                Console.WriteLine("❌ Błędy walidacji modelu:");
+                foreach (var entry in ModelState)
                 {
-                    await Photo.CopyToAsync(stream);
+                    if (entry.Value.Errors.Count > 0)
+                    {
+                        Console.WriteLine($"Pole: {entry.Key}");
+                        foreach (var error in entry.Value.Errors)
+                        {
+                            Console.WriteLine($"   ⛔ {error.ErrorMessage}");
+                        }
+                    }
                 }
-                photoPath = $"/images/{fileName}";
+
+                return View(vehicle);
             }
 
-            var vehicle = new Vehicles
+            // Obsługa zdjęcia z Croppie
+            if (!string.IsNullOrEmpty(croppedPhoto))
             {
-                RegistrationNumber = RegistrationNumber,
-                Brand = Brand,
-                Model = Model,
-                username = username,
-                photopath = photoPath
-            };
+                try
+                {
+                    var base64Data = Regex.Match(croppedPhoto, @"data:image/(?<type>.+?);base64,(?<data>.+)").Groups["data"].Value;
+                    var bytes = Convert.FromBase64String(base64Data);
+
+                    var fileName = $"{Guid.NewGuid()}.png";
+                    var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/vehiclephotos");
+                    var filePath = Path.Combine(folderPath, fileName);
+
+                    Directory.CreateDirectory(folderPath); // upewnij się, że folder istnieje
+                    await System.IO.File.WriteAllBytesAsync(filePath, bytes);
+
+                    vehicle.photopath = $"/vehiclephotos/{fileName}";
+                    Console.WriteLine($"✅ Zdjęcie zapisano jako: {fileName}");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("❌ Błąd przy zapisie zdjęcia: " + ex.Message);
+                    ModelState.AddModelError("", "Nie udało się zapisać zdjęcia pojazdu.");
+                    return View(vehicle);
+                }
+            }
+            else
+            {
+                Console.WriteLine("⚠ Brak zdjęcia – użyto domyślnego.");
+                vehicle.photopath = "/vehiclephotos/default.png";
+            }
 
             _context.Vehicles.Add(vehicle);
             await _context.SaveChangesAsync();
-            TempData["Message"] = "Pojazd został dodany.";
-            return RedirectToAction("Vehiclelist");
+
+            Console.WriteLine("✅ Pojazd dodany do bazy.");
+            return RedirectToAction("VehicleList");
         }
 
+
         [HttpGet]
-        public IActionResult DeleteVehicle(int id)
+        public async Task<IActionResult> DeleteVehicle(int id)
         {
             if (!IsAdmin()) return RedirectToAction("Login");
-            var vehicle = _context.Vehicles.FirstOrDefault(v => v.Id == id);
-            if (vehicle == null) return NotFound();
-            return View(vehicle);
+
+            var vehicle = await _context.Vehicles.FindAsync(id);
+            if (vehicle == null)
+                return NotFound();
+
+            _context.Vehicles.Remove(vehicle);
+            await _context.SaveChangesAsync();
+
+            TempData["Message"] = "Pojazd został usunięty.";
+            return RedirectToAction("VehicleList");
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -216,29 +256,25 @@ namespace KalkulatorPaliwka.Controllers
             if (!IsAdmin()) return RedirectToAction("Login");
             return View(new User());
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddUser(User model, IFormFile avatar)
+        public async Task<IActionResult> AddUser(User model, string croppedAvatar)
         {
             if (!IsAdmin()) return RedirectToAction("Login");
 
             if (!ModelState.IsValid)
-            {
                 return View(model);
-            }
 
-            string avatarPath = "/images/avatar.png";
+            string avatarPath = "/images/avatar.png"; // domyślny avatar
 
-            if (avatar != null && avatar.Length > 0)
+            if (!string.IsNullOrEmpty(croppedAvatar))
             {
-                var fileName = Path.GetFileName(avatar.FileName);
-                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", fileName);
-                using (var stream = new FileStream(path, FileMode.Create))
-                {
-                    await avatar.CopyToAsync(stream);
-                }
-                avatarPath = $"/images/{fileName}";
+                var base64Data = Regex.Match(croppedAvatar, @"data:image/(?<type>.+?);base64,(?<data>.+)").Groups["data"].Value;
+                var bytes = Convert.FromBase64String(base64Data);
+                var fileName = $"{Guid.NewGuid()}.png";
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/avatars", fileName);
+                await System.IO.File.WriteAllBytesAsync(filePath, bytes);
+                avatarPath = $"/avatars/{fileName}";
             }
 
             model.createdat = DateTime.UtcNow;
@@ -250,6 +286,7 @@ namespace KalkulatorPaliwka.Controllers
             TempData["Message"] = "Użytkownik został dodany.";
             return RedirectToAction("Users");
         }
+
 
 
         [HttpGet]
@@ -285,10 +322,101 @@ namespace KalkulatorPaliwka.Controllers
 
 
 
-
         [HttpGet]
-        public IActionResult EditVehicle() => IsAdmin() ? View() : RedirectToAction("Login");
+        public async Task<IActionResult> EditVehicle(int id)
+        {
+            if (!IsAdmin())
+                return RedirectToAction("Login");
 
+            var vehicle = await _context.Vehicles.FindAsync(id);
+            if (vehicle == null)
+                return NotFound();
+
+            // jawne wskazanie ścieżki widoku (dla pewności)
+            return View("~/Views/Admin/EditVehicle.cshtml", vehicle);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditVehicle(int id, Vehicles updatedVehicle, string croppedPhoto)
+        {
+            if (!IsAdmin()) return RedirectToAction("Login");
+
+            if (id != updatedVehicle.Id) return BadRequest();
+
+            var vehicle = await _context.Vehicles.FindAsync(id);
+            if (vehicle == null) return NotFound();
+
+            vehicle.Brand = updatedVehicle.Brand;
+            vehicle.Model = updatedVehicle.Model;
+            vehicle.RegistrationNumber = updatedVehicle.RegistrationNumber;
+
+            if (!string.IsNullOrEmpty(croppedPhoto))
+            {
+                var base64Data = Regex.Match(croppedPhoto, @"data:image/(?<type>.+?);base64,(?<data>.+)").Groups["data"].Value;
+                var bytes = Convert.FromBase64String(base64Data);
+                var fileName = $"{Guid.NewGuid()}.png";
+                var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/vehiclephotos", fileName);
+                await System.IO.File.WriteAllBytesAsync(path, bytes);
+                vehicle.photopath = $"/vehiclephotos/{fileName}";
+            }
+
+            _context.Vehicles.Update(vehicle);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction("VehicleList");
+        }
+        // GET: wybór użytkownika do edycji, lub przekierowanie jeśli podano userid
+        [HttpGet]
+        public async Task<IActionResult> EditUser(string userid)
+        {
+            if (!IsAdmin()) return RedirectToAction("Login");
+            if (string.IsNullOrEmpty(userid)) return RedirectToAction("Users");
+
+            var u = await _context.Users.FindAsync(userid);
+            if (u == null) return NotFound();
+
+            return View(u);
+        }
+
+        // POST: zapis edycji
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditUser(string userid, User model, string croppedAvatar)
+        {
+            if (!IsAdmin()) return RedirectToAction("Login");
+            if (userid != model.userid) return BadRequest();
+
+            if (!ModelState.IsValid)
+                return View(model);
+
+            // pobierz z bazy
+            var u = await _context.Users.FindAsync(userid);
+            if (u == null) return NotFound();
+
+            // zaktualizuj pola
+            u.username = model.username;
+            u.email = model.email;
+            u.passwordhash = model.passwordhash;
+
+            // obsługa nowego avatara
+            if (!string.IsNullOrEmpty(croppedAvatar))
+            {
+                var data = Regex.Match(croppedAvatar, @"data:image/.+;base64,(.+)").Groups[1].Value;
+                var bytes = Convert.FromBase64String(data);
+                var fn = $"{Guid.NewGuid()}.png";
+                var dir = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/avatars");
+                Directory.CreateDirectory(dir);
+                var fp = Path.Combine(dir, fn);
+                await System.IO.File.WriteAllBytesAsync(fp, bytes);
+                u.avatarpath = $"/avatars/{fn}";
+            }
+
+            await _context.SaveChangesAsync();
+            TempData["Message"] = "Użytkownik zaktualizowany.";
+            return RedirectToAction("Users");
+        }
         [HttpGet]
         public IActionResult Logs() => IsAdmin() ? View() : RedirectToAction("Login");
 

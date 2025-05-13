@@ -5,6 +5,14 @@
       "PackagePath": "staticwebassets\\Kalkulator paliwka.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\kosic\\OneDrive\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\wwwroot\\avatars\\8cd30c06-3cc8-4bbe-9e99-7f024dfcaaf2.png",
+      "PackagePath": "staticwebassets\\avatars\\8cd30c06-3cc8-4bbe-9e99-7f024dfcaaf2.png"
+    },
+    {
+      "Id": "C:\\Users\\kosic\\OneDrive\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\wwwroot\\css\\croppie.min.css",
+      "PackagePath": "staticwebassets\\css\\croppie.min.css"
+    },
+    {
       "Id": "C:\\Users\\kosic\\OneDrive\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
@@ -15,6 +23,10 @@
     {
       "Id": "C:\\Users\\kosic\\OneDrive\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "C:\\Users\\kosic\\OneDrive\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\wwwroot\\images\\20200619_183753.jpg",
+      "PackagePath": "staticwebassets\\images\\20200619_183753.jpg"
     },
     {
       "Id": "C:\\Users\\kosic\\OneDrive\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\wwwroot\\images\\20210120_180458.jpg",
@@ -29,6 +41,10 @@
       "PackagePath": "staticwebassets\\images\\STRONA 3.png"
     },
     {
+      "Id": "C:\\Users\\kosic\\OneDrive\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\wwwroot\\images\\STRONA.png",
+      "PackagePath": "staticwebassets\\images\\STRONA.png"
+    },
+    {
       "Id": "C:\\Users\\kosic\\OneDrive\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\wwwroot\\images\\images.png",
       "PackagePath": "staticwebassets\\images\\images.png"
     },
@@ -39,6 +55,10 @@
     {
       "Id": "C:\\Users\\kosic\\OneDrive\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\wwwroot\\images\\wallpaperflare.com_wallpaper.jpg",
       "PackagePath": "staticwebassets\\images\\wallpaperflare.com_wallpaper.jpg"
+    },
+    {
+      "Id": "C:\\Users\\kosic\\OneDrive\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\wwwroot\\js\\croppie.min.js",
+      "PackagePath": "staticwebassets\\js\\croppie.min.js"
     },
     {
       "Id": "C:\\Users\\kosic\\OneDrive\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\wwwroot\\js\\site.js",
@@ -271,6 +291,22 @@
     {
       "Id": "C:\\Users\\kosic\\OneDrive\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "C:\\Users\\kosic\\OneDrive\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\wwwroot\\vehiclephotos\\2dffa1e0-7ce0-4760-a6de-ed54a1518417.png",
+      "PackagePath": "staticwebassets\\vehiclephotos\\2dffa1e0-7ce0-4760-a6de-ed54a1518417.png"
+    },
+    {
+      "Id": "C:\\Users\\kosic\\OneDrive\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\wwwroot\\vehiclephotos\\336b3c83-99c3-433d-af49-b73507859232.png",
+      "PackagePath": "staticwebassets\\vehiclephotos\\336b3c83-99c3-433d-af49-b73507859232.png"
+    },
+    {
+      "Id": "C:\\Users\\kosic\\OneDrive\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\wwwroot\\vehiclephotos\\3d20cbe4-250e-4bdf-b9a0-47aa7679566e.png",
+      "PackagePath": "staticwebassets\\vehiclephotos\\3d20cbe4-250e-4bdf-b9a0-47aa7679566e.png"
+    },
+    {
+      "Id": "C:\\Users\\kosic\\OneDrive\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\wwwroot\\videos\\background.mp4",
+      "PackagePath": "staticwebassets\\videos\\background.mp4"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Kalkulator paliwka.Microsoft.AspNetCore.StaticWebAssets.props",

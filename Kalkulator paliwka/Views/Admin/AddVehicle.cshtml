@@ -1,33 +1,85 @@
+@model KalkulatorPaliwka.Models.Vehicles
+
 @{
     ViewData["Title"] = "Dodaj pojazd";
 }
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js"></script>
+<div class="container mt-5">
+    <h2 class="mb-4 text-center">Dodaj nowy pojazd</h2>
 
-<h2 class="mb-3">Dodaj nowy pojazd</h2>
+    <form asp-action="AddVehicle" method="post">
+        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
 
-<form asp-action="AddVehicle" method="post" enctype="multipart/form-data">
-    <div class="mb-2">
-        <label for="RegistrationNumber">Numer rejestracyjny</label>
-        <input type="text" name="RegistrationNumber" class="form-control" required />
-    </div>
-    <div class="mb-2">
-        <label for="Brand">Marka</label>
-        <input type="text" name="Brand" class="form-control" required />
-    </div>
-    <div class="mb-2">
-        <label for="Model">Model</label>
-        <input type="text" name="Model" class="form-control" required />
-    </div>
-    <div class="mb-2">
-        <label for="FuelType">Rodzaj paliwa</label>
-        <input type="text" name="FuelType" class="form-control" required />
-    </div>
-    <div class="mb-2">
-        <label for="Mileage">Przebieg</label>
-        <input type="number" name="Mileage" class="form-control" required />
-    </div>
-    <div class="mb-3">
-        <label for="Photo">Zdjęcie pojazdu (opcjonalnie)</label>
-        <input type="file" name="Photo" class="form-control" />
-    </div>
-    <button type="submit" class="btn btn-success">Dodaj pojazd</button>
-</form>
+        <div class="mb-3">
+            <label asp-for="Brand" class="form-label">Marka</label>
+            <input asp-for="Brand" class="form-control" />
+            <span asp-validation-for="Brand" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Model" class="form-label">Model</label>
+            <input asp-for="Model" class="form-control" />
+            <span asp-validation-for="Model" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="RegistrationNumber" class="form-label">Numer rejestracyjny</label>
+            <input asp-for="RegistrationNumber" class="form-control" />
+            <span asp-validation-for="RegistrationNumber" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Zdjęcie pojazdu</label>
+            <input type="file" id="upload" accept="image/*" class="form-control" />
+        </div>
+
+        <div id="crop-preview" class="mb-3"></div>
+        <input type="hidden" id="croppedPhoto" name="croppedPhoto" />
+
+        <button type="button" id="crop-btn" class="btn btn-secondary mb-3">Przytnij zdjęcie</button>
+
+        <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-success">Zapisz pojazd</button>
+            <a href="@Url.Action("VehicleList", "Admin")" class="btn btn-outline-secondary">Anuluj</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <link rel="stylesheet" href="~/css/croppie.min.css" />
+    <script src="~/js/croppie.min.js"></script>
+    <script>
+        let croppie = null;
+
+        document.getElementById('upload').addEventListener('change', function (e) {
+            const reader = new FileReader();
+            reader.onload = function (ev) {
+                if (croppie) croppie.destroy();
+
+                croppie = new Croppie(document.getElementById('crop-preview'), {
+                    viewport: { width: 200, height: 200 },
+                    boundary: { width: 300, height: 300 }
+                });
+
+                croppie.bind({ url: ev.target.result });
+            };
+            reader.readAsDataURL(e.target.files[0]);
+        });
+
+        document.getElementById('crop-btn').addEventListener('click', function () {
+            if (!croppie) {
+                alert("Najpierw wybierz zdjęcie.");
+                return;
+            }
+
+            croppie.result({
+                type: 'base64',
+                size: 'viewport'
+            }).then(function (base64) {
+                document.getElementById('croppedPhoto').value = base64;
+                alert("Zdjęcie przycięte – gotowe do zapisu.");
+            });
+        });
+    </script>
+}

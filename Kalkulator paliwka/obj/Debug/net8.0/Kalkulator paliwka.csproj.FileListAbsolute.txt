@@ -435,3 +435,5 @@ C:\Users\kosic\OneDrive\Documents\GitHub\PanP\Kalkulator paliwka\obj\Debug\net8.
 C:\Users\kosic\OneDrive\Documents\GitHub\PanP\Kalkulator paliwka\obj\Debug\net8.0\Kalkulator paliwka.genruntimeconfig.cache
 C:\Users\kosic\OneDrive\Documents\GitHub\PanP\Kalkulator paliwka\obj\Debug\net8.0\ref\Kalkulator paliwka.dll
 C:\Users\kosic\OneDrive\Documents\GitHub\PanP\Kalkulator paliwka\bin\Debug\net8.0\Microsoft.Extensions.ObjectPool.dll
+C:\Users\kosic\OneDrive\Documents\GitHub\PanP\Kalkulator paliwka\bin\Debug\net8.0\package-lock.json
+C:\Users\kosic\OneDrive\Documents\GitHub\PanP\Kalkulator paliwka\bin\Debug\net8.0\package.json

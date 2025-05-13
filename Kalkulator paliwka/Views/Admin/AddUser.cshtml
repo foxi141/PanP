@@ -3,16 +3,11 @@
 @{
     ViewData["Title"] = "Dodaj użytkownika";
 }
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js"></script>
 <h2>Dodaj użytkownika</h2>
 
-@if (TempData["Message"] != null)
-
-{
-    <div class="alert alert-success">@TempData["Message"]</div>
-}
-
-<form asp-action="AddUser" method="post" enctype="multipart/form-data">
+<form asp-action="AddUser" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
     <div class="mb-3">
@@ -40,15 +35,54 @@
     </div>
 
     <div class="mb-3">
-        <label for="avatar">Avatar (opcjonalny)</label>
-        <input type="file" name="avatar" class="form-control" />
+        <label for="upload" class="form-label">Avatar</label>
+        <input type="file" id="upload" accept="image/*" class="form-control" />
     </div>
+
+    <div id="crop-preview" class="mb-3"></div>
+
+    <input type="hidden" name="croppedAvatar" id="croppedAvatar" />
+
+    <button type="button" id="crop-btn" class="btn btn-secondary mb-3">Przytnij obraz</button>
 
     <button type="submit" class="btn btn-success">Dodaj użytkownika</button>
 </form>
 
 @section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
+    <link rel="stylesheet" href="~/css/croppie.min.css" />
+    <script src="~/js/croppie.min.js"></script>
+
+    <script>
+        let croppieInstance = null;
+
+        document.getElementById('upload').addEventListener('change', function (e) {
+            const reader = new FileReader();
+            reader.onload = function (event) {
+                if (croppieInstance) croppieInstance.destroy();
+
+                croppieInstance = new Croppie(document.getElementById('crop-preview'), {
+                    viewport: { width: 150, height: 150, type: 'circle' },
+                    boundary: { width: 300, height: 300 }
+                });
+
+                croppieInstance.bind({
+                    url: event.target.result
+                });
+            };
+            reader.readAsDataURL(e.target.files[0]);
+        });
+
+        document.getElementById('crop-btn').addEventListener('click', function () {
+            if (croppieInstance) {
+                croppieInstance.result({
+                    type: 'base64',
+                    size: 'viewport'
+                }).then(function (output) {
+                    document.getElementById('croppedAvatar').value = output;
+                    alert("Obraz przycięty – gotowy do zapisania.");
+                });
+            }
+        });
+    </script>
+   
 }

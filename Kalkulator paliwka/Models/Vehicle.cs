@@ -1,10 +1,12 @@
 ﻿using Kalkulator_paliwka.Views.Admin;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 namespace KalkulatorPaliwka.Models; 
 public class Vehicles
 {
     [Key]
-    public int Id { get; set; } // Klucz główny
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int Id { get; set; }
     [Required]
     public string Brand { get; set; } // Marka pojazdu
 
@@ -16,5 +18,5 @@ public class Vehicles
 
     public string ?username { get; set; } // Zmienione na Username
 
-    public string photopath { get; set; }
+    public string photopath { get; set; } = "/vehiclephotos/default.png";
 }

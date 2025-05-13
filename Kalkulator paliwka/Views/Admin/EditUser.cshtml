@@ -1,38 +1,81 @@
 ﻿@model KalkulatorPaliwka.Models.User
 
 @{
-    ViewData["Title"] = "Edit User";
+    ViewData["Title"] = "Edytuj użytkownika";
 }
 
-<h2>Edit User</h2>
+<div class="container mt-5">
+    <h2 class="mb-4 text-center">Edytuj użytkownika</h2>
 
-<form asp-action="EditUser" method="post">
-    <div class="form-group">
-        <label asp-for="userid" class="control-label">User ID</label>
-        <input asp-for="userid" class="form-control" readonly />
-        <span asp-validation-for="userid" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="username" class="control-label">Username</label>
-        <input asp-for="username" class="form-control" />
-        <span asp-validation-for="username" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="passwordhash" class="control-label">Password Hash</label>
-        <input asp-for="passwordhash" class="form-control" />
-        <span asp-validation-for="passwordhash" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <button type="submit" class="btn btn-primary">Save Changes</button>
-        <a asp-action="Users" class="btn btn-secondary">Cancel</a>
-    </div>
-</form>
+    <form asp-action="EditUser" asp-route-userid="@Model.userid" method="post">
+        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+        <div class="mb-3">
+            <label asp-for="username" class="form-label">Username</label>
+            <input asp-for="username" class="form-control" />
+            <span asp-validation-for="username" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="email" class="form-label">Email</label>
+            <input asp-for="email" class="form-control" />
+            <span asp-validation-for="email" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="passwordhash" class="form-label">Hasło</label>
+            <input asp-for="passwordhash" type="password" class="form-control" />
+            <span asp-validation-for="passwordhash" class="text-danger"></span>
+        </div>
+
+        @* Stary avatar *@
+        @if (!string.IsNullOrEmpty(Model.avatarpath))
+        {
+            <div class="mb-3 text-center">
+                <label class="form-label">Obecny avatar:</label><br />
+                <img src="@Model.avatarpath" class="rounded-circle" width="100" height="100" />
+            </div>
+        }
+
+        <div class="mb-3">
+            <label class="form-label">Nowy avatar (opcjonalnie)</label>
+            <input type="file" id="upload" accept="image/*" class="form-control" />
+        </div>
+
+        <div id="crop-preview" class="mb-3 text-center"></div>
+        <input type="hidden" id="croppedAvatar" name="croppedAvatar" />
+
+        <button type="button" id="crop-btn" class="btn btn-secondary mb-3">Przytnij avatar</button>
+
+        <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-success">Zapisz zmiany</button>
+            <a href="@Url.Action("Users","Admin")" class="btn btn-outline-secondary">Anuluj</a>
+        </div>
+    </form>
+</div>
 
 @section Scripts {
-    <partial name="_ValidationScriptsPartial" />
+    <link rel="stylesheet" href="~/css/croppie.min.css" />
+    <script src="~/js/croppie.min.js"></script>
+    <script>
+        let croppie = null;
+        document.getElementById('upload').addEventListener('change', e => {
+            const reader = new FileReader();
+            reader.onload = ev => {
+                if (croppie) croppie.destroy();
+                croppie = new Croppie(document.getElementById('crop-preview'), {
+                    viewport: { width: 100, height: 100, type: 'circle' },
+                    boundary: { width: 200, height: 200 }
+                });
+                croppie.bind({ url: ev.target.result });
+            };
+            reader.readAsDataURL(e.target.files[0]);
+        });
+        document.getElementById('crop-btn').addEventListener('click', () => {
+            if (!croppie) return alert("Wybierz plik");
+            croppie.result({ type: 'base64', size: 'viewport' }).then(base64 => {
+                document.getElementById('croppedAvatar').value = base64;
+            });
+        });
+    </script>
 }
-<div>
-    <a href="@Url.Action("Index", "AdminDashboard")">
-        <button type="button">Powrót </button>
-    </a>
-</div>

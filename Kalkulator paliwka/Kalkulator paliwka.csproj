@@ -8,10 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Views\Admin\EditVehicle.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Remove="Models\NewFile.txt" />
   </ItemGroup>
 
@@ -29,10 +25,6 @@
 
   <ItemGroup>
     <Folder Include="Migrations\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="Views\Admin\EditVehicle.cshtml" />
   </ItemGroup>
 
 </Project>

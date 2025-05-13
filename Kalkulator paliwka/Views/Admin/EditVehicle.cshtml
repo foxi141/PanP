@@ -1,28 +1,86 @@
-@model KalkulatorPaliwka.Models.Vehicles
+﻿@model KalkulatorPaliwka.Models.Vehicles
 
 @{
-    ViewData["Title"] = "Edit Vehicle";
+    ViewData["Title"] = "Edytuj pojazd";
 }
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js"></script>
+<div class="container mt-5">
+    <h2 class="mb-4 text-center">Edytuj pojazd</h2>
 
-<h2>Edit Vehicle</h2>
+    <form asp-action="EditVehicle" asp-route-id="@Model.Id" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-<form method="post" asp-action="EditVehicle" asp-route-id="@Model.Id">
-    <div>
-        <label>Brand</label>
-        <input type="text" name="Brand" value="@Model.Brand" required />
-    </div>
-    <div>
-        <label>Model</label>
-        <input type="text" name="Model" value="@Model.Model" required />
-    </div>
-    <div>
-        <label>Registration Number</label>
-        <input type="text" name="RegistrationNumber" value="@Model.RegistrationNumber" required />
-    </div>
-    <button type="submit">Save</button>
-</form>
-<div>
-    <a href="@Url.Action("Index", "AdminDashboard")">
-        <button type="button">Powr�t </button>
-    </a>
+        <div class="mb-3">
+            <label asp-for="Brand" class="form-label">Marka</label>
+            <input asp-for="Brand" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Model" class="form-label">Model</label>
+            <input asp-for="Model" class="form-control" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="RegistrationNumber" class="form-label">Numer rejestracyjny</label>
+            <input asp-for="RegistrationNumber" class="form-control" />
+        </div>
+
+        @if (!string.IsNullOrEmpty(Model.photopath))
+        {
+            <div class="mb-3">
+                <label class="form-label">Aktualne zdjęcie pojazdu:</label><br />
+                <img src="@Model.photopath" width="200" class="img-thumbnail" />
+            </div>
+        }
+
+        <div class="mb-3">
+            <label class="form-label">Nowe zdjęcie pojazdu (opcjonalne)</label>
+            <input type="file" id="upload" accept="image/*" class="form-control" />
+        </div>
+
+        <div id="crop-preview" class="mb-3"></div>
+        <input type="hidden" id="croppedPhoto" name="croppedPhoto" />
+
+        <button type="button" id="crop-btn" class="btn btn-secondary mb-3">Przytnij obraz</button>
+
+        <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-success">Zapisz zmiany</button>
+            <a href="@Url.Action("VehicleList", "Admin")" class="btn btn-secondary">Powrót</a>
+        </div>
+    </form>
 </div>
+
+@section Scripts {
+    <link rel="stylesheet" href="~/css/croppie.min.css" />
+    <script src="~/js/croppie.min.js"></script>
+
+    <script>
+        let croppie = null;
+
+        document.getElementById('upload').addEventListener('change', function (e) {
+            const reader = new FileReader();
+            reader.onload = function (ev) {
+                if (croppie) croppie.destroy();
+
+                croppie = new Croppie(document.getElementById('crop-preview'), {
+                    viewport: { width: 200, height: 200 },
+                    boundary: { width: 300, height: 300 }
+                });
+
+                croppie.bind({ url: ev.target.result });
+            };
+            reader.readAsDataURL(e.target.files[0]);
+        });
+
+        document.getElementById('crop-btn').addEventListener('click', function () {
+            croppie.result({
+                type: 'base64',
+                size: 'viewport'
+            }).then(function (base64) {
+                document.getElementById('croppedPhoto').value = base64;
+                alert("Nowe zdjęcie przycięte – gotowe do zapisu.");
+            });
+        });
+    </script>
+}
