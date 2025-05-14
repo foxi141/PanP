@@ -25,6 +25,15 @@
             <label asp-for="RegistrationNumber" class="form-label">Numer rejestracyjny</label>
             <input asp-for="RegistrationNumber" class="form-control" />
         </div>
+        <div class="mb-3">
+            <label asp-for="technicalinspectiondate" class="form-label">Data przeglądu technicznego</label>
+            <input asp-for="technicalinspectiondate" type="date" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="insurancedate" class="form-label">Data ubezpieczenia</label>
+            <input asp-for="insurancedate" type="date" class="form-control" />
+        </div>
+
 
         @if (!string.IsNullOrEmpty(Model.photopath))
         {
@@ -48,7 +57,10 @@
             <button type="submit" class="btn btn-success">Zapisz zmiany</button>
             <a href="@Url.Action("VehicleList", "Admin")" class="btn btn-secondary">Powrót</a>
         </div>
-    </form>
+    
+ 
+
+</form>
 </div>
 
 @section Scripts {

@@ -43,7 +43,19 @@
             <button type="submit" class="btn btn-success">Zapisz pojazd</button>
             <a href="@Url.Action("VehicleList", "Admin")" class="btn btn-outline-secondary">Anuluj</a>
         </div>
-    </form>
+    
+    <div class="mb-3">
+        <label asp-for="technicalinspectiondate" class="form-label">Data przeglądu technicznego</label>
+        <input asp-for="technicalinspectiondate" type="date" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="insurancedate" class="form-label">Data ubezpieczenia</label>
+        <input asp-for="insurancedate" type="date" class="form-control" />
+    </div>
+
+    <a href="@Url.Action("Index", "AdminDashboard")" class="btn btn-secondary mt-3">Powrót</a>
+
+</form>
 </div>
 
 @section Scripts {

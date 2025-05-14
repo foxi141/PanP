@@ -105,7 +105,13 @@ namespace KalkulatorPaliwka.Controllers
                 return View(vehicle);
             }
 
-            // Obsługa zdjęcia z Croppie
+            // Wymuś UTC na datach
+            if (vehicle.technicalinspectiondate.HasValue)
+                vehicle.technicalinspectiondate = DateTime.SpecifyKind(vehicle.technicalinspectiondate.Value, DateTimeKind.Utc);
+            if (vehicle.insurancedate.HasValue)
+                vehicle.insurancedate = DateTime.SpecifyKind(vehicle.insurancedate.Value, DateTimeKind.Utc);
+
+            // Obsługa zdjęcia
             if (!string.IsNullOrEmpty(croppedPhoto))
             {
                 try
@@ -117,7 +123,7 @@ namespace KalkulatorPaliwka.Controllers
                     var folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/vehiclephotos");
                     var filePath = Path.Combine(folderPath, fileName);
 
-                    Directory.CreateDirectory(folderPath); // upewnij się, że folder istnieje
+                    Directory.CreateDirectory(folderPath);
                     await System.IO.File.WriteAllBytesAsync(filePath, bytes);
 
                     vehicle.photopath = $"/vehiclephotos/{fileName}";
@@ -132,7 +138,6 @@ namespace KalkulatorPaliwka.Controllers
             }
             else
             {
-                Console.WriteLine("⚠ Brak zdjęcia – użyto domyślnego.");
                 vehicle.photopath = "/vehiclephotos/default.png";
             }
 
@@ -352,6 +357,11 @@ namespace KalkulatorPaliwka.Controllers
             vehicle.Model = updatedVehicle.Model;
             vehicle.RegistrationNumber = updatedVehicle.RegistrationNumber;
 
+            if (updatedVehicle.technicalinspectiondate.HasValue)
+                vehicle.technicalinspectiondate = DateTime.SpecifyKind(updatedVehicle.technicalinspectiondate.Value, DateTimeKind.Utc);
+            if (updatedVehicle.insurancedate.HasValue)
+                vehicle.insurancedate = DateTime.SpecifyKind(updatedVehicle.insurancedate.Value, DateTimeKind.Utc);
+
             if (!string.IsNullOrEmpty(croppedPhoto))
             {
                 var base64Data = Regex.Match(croppedPhoto, @"data:image/(?<type>.+?);base64,(?<data>.+)").Groups["data"].Value;
@@ -367,56 +377,7 @@ namespace KalkulatorPaliwka.Controllers
 
             return RedirectToAction("VehicleList");
         }
-        // GET: wybór użytkownika do edycji, lub przekierowanie jeśli podano userid
-        [HttpGet]
-        public async Task<IActionResult> EditUser(string userid)
-        {
-            if (!IsAdmin()) return RedirectToAction("Login");
-            if (string.IsNullOrEmpty(userid)) return RedirectToAction("Users");
 
-            var u = await _context.Users.FindAsync(userid);
-            if (u == null) return NotFound();
-
-            return View(u);
-        }
-
-        // POST: zapis edycji
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EditUser(string userid, User model, string croppedAvatar)
-        {
-            if (!IsAdmin()) return RedirectToAction("Login");
-            if (userid != model.userid) return BadRequest();
-
-            if (!ModelState.IsValid)
-                return View(model);
-
-            // pobierz z bazy
-            var u = await _context.Users.FindAsync(userid);
-            if (u == null) return NotFound();
-
-            // zaktualizuj pola
-            u.username = model.username;
-            u.email = model.email;
-            u.passwordhash = model.passwordhash;
-
-            // obsługa nowego avatara
-            if (!string.IsNullOrEmpty(croppedAvatar))
-            {
-                var data = Regex.Match(croppedAvatar, @"data:image/.+;base64,(.+)").Groups[1].Value;
-                var bytes = Convert.FromBase64String(data);
-                var fn = $"{Guid.NewGuid()}.png";
-                var dir = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/avatars");
-                Directory.CreateDirectory(dir);
-                var fp = Path.Combine(dir, fn);
-                await System.IO.File.WriteAllBytesAsync(fp, bytes);
-                u.avatarpath = $"/avatars/{fn}";
-            }
-
-            await _context.SaveChangesAsync();
-            TempData["Message"] = "Użytkownik zaktualizowany.";
-            return RedirectToAction("Users");
-        }
         [HttpGet]
         public IActionResult Logs() => IsAdmin() ? View() : RedirectToAction("Login");
 

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "fHGUHkBjMKf/EtAVXnneaO6DWSHMrtztJhvtVV/jaNE=",
+  "Hash": "JtqyLC5E+dxxHXjk7wnQISJN7/yKMzBoymk86zQzAhQ=",
   "Source": "Kalkulator paliwka",
   "BasePath": "_content/Kalkulator paliwka",
   "Mode": "Default",
@@ -1423,6 +1423,25 @@
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
     },
     {
+      "Identity": "C:\\Users\\kosic\\OneDrive\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\wwwroot\\vehiclephotos\\255159b6-f6be-4bde-8a26-5f418368ac7b.png",
+      "SourceId": "Kalkulator paliwka",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\kosic\\OneDrive\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\wwwroot\\",
+      "BasePath": "_content/Kalkulator paliwka",
+      "RelativePath": "vehiclephotos/255159b6-f6be-4bde-8a26-5f418368ac7b.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\vehiclephotos\\255159b6-f6be-4bde-8a26-5f418368ac7b.png"
+    },
+    {
       "Identity": "C:\\Users\\kosic\\OneDrive\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\wwwroot\\vehiclephotos\\2dffa1e0-7ce0-4760-a6de-ed54a1518417.png",
       "SourceId": "Kalkulator paliwka",
       "SourceType": "Discovered",
@@ -1478,6 +1497,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\vehiclephotos\\3d20cbe4-250e-4bdf-b9a0-47aa7679566e.png"
+    },
+    {
+      "Identity": "C:\\Users\\kosic\\OneDrive\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\wwwroot\\vehiclephotos\\cdec9cb8-549b-4b8d-99fb-568d4a461bbf.png",
+      "SourceId": "Kalkulator paliwka",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\kosic\\OneDrive\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\wwwroot\\",
+      "BasePath": "_content/Kalkulator paliwka",
+      "RelativePath": "vehiclephotos/cdec9cb8-549b-4b8d-99fb-568d4a461bbf.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\vehiclephotos\\cdec9cb8-549b-4b8d-99fb-568d4a461bbf.png"
     },
     {
       "Identity": "C:\\Users\\kosic\\OneDrive\\Documents\\GitHub\\PanP\\Kalkulator paliwka\\wwwroot\\videos\\background.mp4",
